@@ -44,7 +44,7 @@ const concerts = [
     day: "Вторник",
     city: "г. Ейск",
     venue: "ГДК",
-    ticketUrl: "#",
+    ticketUrl: "https://krd.kassir.ru/koncert/gorodskoy-dvorets-kulturyi-eysk/batrai-batyir-dolev_2026-05-20",
     sold: false,
   },
   {
