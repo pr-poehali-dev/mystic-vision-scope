@@ -20,7 +20,7 @@ const concerts = [
     day: "Суббота",
     city: "г. Батайск",
     venue: "РДК",
-    ticketUrl: "#",
+    ticketUrl: "https://rnd.kassir.ru/koncert/batrai-1#3809778",
     sold: false,
   },
   {
