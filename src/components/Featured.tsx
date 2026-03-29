@@ -36,7 +36,7 @@ const concerts = [
     day: "Понедельник",
     city: "ст. Ленинградская",
     venue: "МБУ ССК",
-    ticketUrl: "#",
+    ticketUrl: "https://krd.kassir.ru/koncert/mbu-skk-leningradskaya/batrai-batyir-dolev_2026-05-19",
     sold: false,
   },
   {
