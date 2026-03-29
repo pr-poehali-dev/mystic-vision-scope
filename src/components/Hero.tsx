@@ -32,7 +32,7 @@ export default function Hero() {
           Официальный сайт
         </p>
         <h1 className="text-7xl md:text-9xl lg:text-[12rem] font-bold tracking-tight leading-none mb-6">
-          NOVA
+          BATRAI
         </h1>
         <p className="text-lg md:text-xl max-w-xl mx-auto opacity-80 font-light leading-relaxed">
           Музыка, которая останется с тобой навсегда
