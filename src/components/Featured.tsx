@@ -28,7 +28,7 @@ const concerts = [
     day: "Воскресенье",
     city: "ст. Кущёвская",
     venue: "РДК",
-    ticketUrl: "#",
+    ticketUrl: "https://krd.kassir.ru/koncert/rdk-st-kuschyovskaya/batrai-batyir-dolev_2026-05-18",
     sold: false,
   },
   {
