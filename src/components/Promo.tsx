@@ -16,10 +16,10 @@ export default function Promo() {
       className="relative overflow-hidden bg-black"
       style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
     >
-      <div className="max-w-6xl mx-auto px-6 py-24 lg:py-32 flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+      <div className="max-w-6xl mx-auto px-6 py-12 lg:py-16 flex flex-col lg:flex-row items-end gap-16 lg:gap-24">
         <motion.div
           style={{ y }}
-          className="relative flex-shrink-0 w-72 lg:w-96"
+          className="relative flex-shrink-0 w-72 lg:w-[480px]"
         >
           <div
             className="absolute inset-0 scale-110 rounded-sm"
