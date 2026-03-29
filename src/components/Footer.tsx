@@ -10,58 +10,58 @@ export default function Footer() {
           <div className="bg-neutral-950 py-4 sm:py-6 lg:py-8 px-4 sm:px-6 h-full w-full flex flex-col justify-between">
             <div className="flex shrink-0 gap-8 sm:gap-12 lg:gap-20">
               <div className="flex flex-col gap-1 sm:gap-2">
-                <h3 className="mb-1 sm:mb-2 uppercase text-purple-400 text-xs sm:text-sm tracking-widest">Слушать</h3>
+                <h3 className="mb-1 sm:mb-2 uppercase text-red-400 text-xs sm:text-sm tracking-widest">Слушать</h3>
                 <a
                   href="#"
-                  className="text-white hover:text-purple-300 transition-colors duration-300 text-sm sm:text-base"
+                  className="text-white hover:text-red-400 transition-colors duration-300 text-sm sm:text-base"
                 >
                   Spotify
                 </a>
                 <a
                   href="#"
-                  className="text-white hover:text-purple-300 transition-colors duration-300 text-sm sm:text-base"
+                  className="text-white hover:text-red-400 transition-colors duration-300 text-sm sm:text-base"
                 >
                   Apple Music
                 </a>
                 <a
                   href="#"
-                  className="text-white hover:text-purple-300 transition-colors duration-300 text-sm sm:text-base"
+                  className="text-white hover:text-red-400 transition-colors duration-300 text-sm sm:text-base"
                 >
                   YouTube Music
                 </a>
               </div>
               <div className="flex flex-col gap-1 sm:gap-2">
-                <h3 className="mb-1 sm:mb-2 uppercase text-purple-400 text-xs sm:text-sm tracking-widest">Соцсети</h3>
+                <h3 className="mb-1 sm:mb-2 uppercase text-red-400 text-xs sm:text-sm tracking-widest">Соцсети</h3>
                 <a
                   href="#"
-                  className="text-white hover:text-purple-300 transition-colors duration-300 text-sm sm:text-base"
+                  className="text-white hover:text-red-400 transition-colors duration-300 text-sm sm:text-base"
                 >
                   VK
                 </a>
                 <a
                   href="#"
-                  className="text-white hover:text-purple-300 transition-colors duration-300 text-sm sm:text-base"
+                  className="text-white hover:text-red-400 transition-colors duration-300 text-sm sm:text-base"
                 >
                   Telegram
                 </a>
                 <a
                   href="#"
-                  className="text-white hover:text-purple-300 transition-colors duration-300 text-sm sm:text-base"
+                  className="text-white hover:text-red-400 transition-colors duration-300 text-sm sm:text-base"
                 >
                   Instagram
                 </a>
               </div>
               <div className="flex flex-col gap-1 sm:gap-2">
-                <h3 className="mb-1 sm:mb-2 uppercase text-purple-400 text-xs sm:text-sm tracking-widest">Контакты</h3>
+                <h3 className="mb-1 sm:mb-2 uppercase text-red-400 text-xs sm:text-sm tracking-widest">Контакты</h3>
                 <a
                   href="mailto:booking@nova-music.ru"
-                  className="text-white hover:text-purple-300 transition-colors duration-300 text-sm sm:text-base"
+                  className="text-white hover:text-red-400 transition-colors duration-300 text-sm sm:text-base"
                 >
                   Буккинг
                 </a>
                 <a
                   href="mailto:press@nova-music.ru"
-                  className="text-white hover:text-purple-300 transition-colors duration-300 text-sm sm:text-base"
+                  className="text-white hover:text-red-400 transition-colors duration-300 text-sm sm:text-base"
                 >
                   Пресс-служба
                 </a>

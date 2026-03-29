@@ -20,7 +20,7 @@ export default function Hero() {
         className="absolute inset-0 w-full h-full"
       >
         <img
-          src="https://cdn.poehali.dev/projects/bd77bfb9-eb01-4e5f-b885-f17ac1c02d19/files/7664dd68-f6c2-4cfb-83d0-152b506a988e.jpg"
+          src="https://cdn.poehali.dev/projects/bd77bfb9-eb01-4e5f-b885-f17ac1c02d19/files/2701b338-edd0-4cd1-8ec2-9852831beffe.jpg"
           alt="Concert stage"
           className="w-full h-full object-cover"
         />
@@ -28,7 +28,7 @@ export default function Hero() {
       </motion.div>
 
       <motion.div style={{ opacity }} className="relative z-10 text-center text-white px-6">
-        <p className="text-purple-300 uppercase tracking-[0.4em] text-sm mb-4 font-light">
+        <p className="text-red-400 uppercase tracking-[0.4em] text-sm mb-4 font-light">
           Официальный сайт
         </p>
         <h1 className="text-7xl md:text-9xl lg:text-[12rem] font-bold leading-none mb-6" style={{ fontFamily: "'DIN Condensed', 'Barlow Condensed', sans-serif", letterSpacing: '0.2em' }}>

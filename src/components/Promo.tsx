@@ -27,7 +27,7 @@ export default function Promo() {
         </motion.div>
       </div>
 
-      <h3 className="absolute top-12 left-6 text-purple-300 uppercase z-10 text-xs tracking-[0.4em]">
+      <h3 className="absolute top-12 left-6 text-red-400 uppercase z-10 text-xs tracking-[0.4em]">
         Об исполнителе
       </h3>
 
