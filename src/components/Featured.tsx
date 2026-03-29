@@ -60,7 +60,7 @@ const concerts = [
     day: "Четверг",
     city: "г. Краснодар",
     venue: "Sgt. Pepper's Bar",
-    ticketUrl: "#",
+    ticketUrl: "https://music.yandex.ru/concert/cda70b7a-b6f3-42d7-b648-d930a58b1c35?utm_source=web&utm_medium=copy_link",
     sold: false,
   },
   {
