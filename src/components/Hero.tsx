@@ -8,6 +8,7 @@ export default function Hero() {
     offset: ["start start", "end start"],
   });
   const y = useTransform(scrollYProgress, [0, 1], ["0vh", "50vh"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
   return (
     <div
@@ -19,20 +20,30 @@ export default function Hero() {
         className="absolute inset-0 w-full h-full"
       >
         <img
-          src="/images/mountain-landscape.jpg"
-          alt="Mountain landscape"
+          src="https://cdn.poehali.dev/projects/bd77bfb9-eb01-4e5f-b885-f17ac1c02d19/files/7664dd68-f6c2-4cfb-83d0-152b506a988e.jpg"
+          alt="Concert stage"
           className="w-full h-full object-cover"
         />
+        <div className="absolute inset-0 bg-black/50" />
       </motion.div>
 
-      <div className="relative z-10 text-center text-white">
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6">
-          ОТКРОЙ
-        </h1>
-        <p className="text-lg md:text-xl max-w-2xl mx-auto px-6 opacity-90">
-          Исследуй границы дизайна с иммерсивным параллакс-эффектом
+      <motion.div style={{ opacity }} className="relative z-10 text-center text-white px-6">
+        <p className="text-purple-300 uppercase tracking-[0.4em] text-sm mb-4 font-light">
+          Официальный сайт
         </p>
-      </div>
+        <h1 className="text-7xl md:text-9xl lg:text-[12rem] font-bold tracking-tight leading-none mb-6">
+          NOVA
+        </h1>
+        <p className="text-lg md:text-xl max-w-xl mx-auto opacity-80 font-light leading-relaxed">
+          Музыка, которая останется с тобой навсегда
+        </p>
+        <a
+          href="#concerts"
+          className="inline-block mt-10 border border-white text-white px-8 py-3 uppercase tracking-widest text-sm hover:bg-white hover:text-black transition-all duration-300"
+        >
+          Расписание концертов
+        </a>
+      </motion.div>
     </div>
   );
 }
