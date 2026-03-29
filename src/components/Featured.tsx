@@ -52,7 +52,7 @@ const concerts = [
     day: "Среда",
     city: "ст. Староминская",
     venue: "РДКС",
-    ticketUrl: "#",
+    ticketUrl: "https://krd.kassir.ru/koncert/rdks-st-starominskoy/batrai-batyir-dolev_2026-05-21",
     sold: false,
   },
   {
