@@ -67,11 +67,11 @@ export default function Footer() {
                 </a>
               </div>
             </div>
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 sm:gap-0">
+            <div className="flex flex-col">
               <h1 className="text-[18vw] sm:text-[16vw] lg:text-[14vw] leading-[0.8] mt-4 sm:mt-6 lg:mt-10 text-white font-bold tracking-tight" style={{ fontFamily: "'DIN Condensed', 'Barlow Condensed', sans-serif", letterSpacing: '0.6em' }}>
                 BATRAI
               </h1>
-              <p className="text-neutral-500 text-sm sm:text-base">{new Date().getFullYear()} BATRAI. Все права защищены.</p>
+              <p className="text-neutral-600 text-xs mt-2 tracking-wide">{new Date().getFullYear()} BATRAI. Все права защищены.</p>
             </div>
           </div>
         </div>
