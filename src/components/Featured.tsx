@@ -76,7 +76,7 @@ const concerts = [
     day: "Четверг",
     city: "г. Пятигорск",
     venue: "ДК «София»",
-    ticketUrl: "#",
+    ticketUrl: "https://music.yandex.ru/concert/d8a8af1a-cc11-4402-bd50-bdd92232c7ba?utm_source=web&utm_medium=copy_link",
     sold: false,
   },
 ];
