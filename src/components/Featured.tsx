@@ -12,7 +12,7 @@ const concerts = [
     day: "Пятница",
     city: "г. Новочеркасск",
     venue: "КЗ НПИ",
-    ticketUrl: "#",
+    ticketUrl: "https://rnd.kassir.ru/koncert/batrai-1#3810038",
     sold: false,
   },
   {
