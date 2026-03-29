@@ -31,7 +31,7 @@ export default function Hero() {
         <p className="text-purple-300 uppercase tracking-[0.4em] text-sm mb-4 font-light">
           Официальный сайт
         </p>
-        <h1 className="text-7xl md:text-9xl lg:text-[12rem] font-bold tracking-tight leading-none mb-6" style={{ fontFamily: "'DIN Condensed', 'Barlow Condensed', sans-serif" }}>
+        <h1 className="text-7xl md:text-9xl lg:text-[12rem] font-bold leading-none mb-6" style={{ fontFamily: "'DIN Condensed', 'Barlow Condensed', sans-serif", letterSpacing: '0.2em' }}>
           BATRAI
         </h1>
         <p className="text-lg md:text-xl max-w-xl mx-auto opacity-80 font-light leading-relaxed">
