@@ -101,6 +101,7 @@ export default function Hero() {
           src="https://cdn.poehali.dev/projects/bd77bfb9-eb01-4e5f-b885-f17ac1c02d19/bucket/447c0826-631a-49ce-b828-e923421a0a19.jpg"
           alt="Concert stage"
           className="w-full h-full object-cover"
+          style={{ filter: "sepia(1) saturate(3) hue-rotate(-30deg) brightness(0.6)" }}
         />
         <div className="absolute inset-0 bg-black/55" />
       </motion.div>
