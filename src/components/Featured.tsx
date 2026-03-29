@@ -68,7 +68,7 @@ const concerts = [
     day: "Пятница",
     city: "г. Майкоп",
     venue: "КЗ АГУ",
-    ticketUrl: "#",
+    ticketUrl: "https://kassa01.ru/pay.php?uid=69b2fe8ac5c34644181ad8cb&partner=kassa01",
     sold: false,
   },
   {
