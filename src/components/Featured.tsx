@@ -4,7 +4,7 @@ const concerts = [
     day: "Четверг",
     city: "г. Зерноград",
     venue: "РДК",
-    ticketUrl: "#",
+    ticketUrl: "https://rnd.kassir.ru/koncert/batrai-1",
     sold: false,
   },
   {
