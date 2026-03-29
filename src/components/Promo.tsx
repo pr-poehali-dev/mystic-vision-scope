@@ -34,6 +34,7 @@ export default function Promo() {
             className="relative z-10 w-full object-contain drop-shadow-2xl"
             style={{ filter: "drop-shadow(0 0 40px rgba(220,38,38,0.4))" }}
           />
+          <div className="absolute bottom-0 left-0 right-0 h-40 z-20" style={{ background: "linear-gradient(to top, #000000 0%, transparent 100%)" }} />
         </motion.div>
 
         <div className="flex flex-col gap-6 text-white">
