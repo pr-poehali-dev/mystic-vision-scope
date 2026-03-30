@@ -21,7 +21,7 @@ export default function Promo() {
           <img
             src="https://cdn.poehali.dev/projects/bd77bfb9-eb01-4e5f-b885-f17ac1c02d19/bucket/0251bab2-d579-46c1-976d-bf78fb7e4134.jpg"
             alt="Batrai"
-            className="w-full h-full object-cover object-[center_30%]"
+            className="w-full h-full object-cover object-[center_60%] scale-75 origin-top"
           />
           <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%)" }} />
         </motion.div>
