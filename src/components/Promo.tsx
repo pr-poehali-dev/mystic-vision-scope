@@ -24,7 +24,12 @@ export default function Promo() {
           <img
             src="https://cdn.poehali.dev/projects/bd77bfb9-eb01-4e5f-b885-f17ac1c02d19/bucket/8f07db44-393e-4264-bee1-7aaa0844e775.jpg"
             alt="Batrai"
-            className="w-full h-full object-cover object-[center_20%] lg:object-contain lg:object-top"
+            className="w-full h-full object-cover object-[center_20%] lg:hidden"
+          />
+          <img
+            src="https://cdn.poehali.dev/projects/bd77bfb9-eb01-4e5f-b885-f17ac1c02d19/bucket/9312f726-61a6-4088-9596-e7e7dd12828a.jpg"
+            alt="Batrai"
+            className="hidden lg:block w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 lg:hidden" style={{ background: "linear-gradient(to top, rgba(0,0,0,1) 0%, transparent 60%)" }} />
           <div className="absolute inset-0 hidden lg:block" style={{ background: "linear-gradient(to right, transparent 70%, rgba(0,0,0,1) 100%)" }} />
