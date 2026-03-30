@@ -33,7 +33,7 @@ export default function Promo() {
         <div className="relative z-10 flex flex-col justify-center px-8 lg:px-16 py-16 lg:py-24 w-full lg:w-1/2">
           <p className="text-brand uppercase tracking-[0.4em] text-xs mb-5">Об исполнителе</p>
           <h2
-            className="text-5xl lg:text-7xl font-bold leading-none mb-8"
+            className="text-5xl lg:text-7xl font-bold leading-none mb-8 text-[#ffffff]"
             style={{ fontFamily: "'DIN Condensed', 'Barlow Condensed', sans-serif", letterSpacing: "0.6em" }}
           >
             BATRAI
