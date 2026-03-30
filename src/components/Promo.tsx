@@ -21,7 +21,7 @@ export default function Promo() {
           <img
             src="https://cdn.poehali.dev/projects/bd77bfb9-eb01-4e5f-b885-f17ac1c02d19/bucket/0251bab2-d579-46c1-976d-bf78fb7e4134.jpg"
             alt="Batrai"
-            className="w-full h-full object-cover object-top"
+            className="w-full h-full object-cover object-[center_30%]"
           />
           <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%)" }} />
         </motion.div>
@@ -31,7 +31,7 @@ export default function Promo() {
         <p className="uppercase tracking-[0.4em] text-xs mb-4 text-[#ffffff]">Об исполнителе</p>
         <h2
           className="text-5xl lg:text-7xl font-bold leading-tight mb-6"
-          style={{ fontFamily: "'DIN Condensed', 'Barlow Condensed', sans-serif", letterSpacing: "0.6em", textIndent: "0.6em" }}
+          style={{ fontFamily: "'DIN Condensed', 'Barlow Condensed', sans-serif", letterSpacing: "0.6em" }}
         >
           BATRAI
         </h2>
