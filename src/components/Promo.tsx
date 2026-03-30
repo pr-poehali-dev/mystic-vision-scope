@@ -19,7 +19,7 @@ export default function Promo() {
       <div className="absolute inset-0 w-full h-full">
         <motion.div style={{ y }} className="relative w-full h-[120%] -top-[10%]">
           <img
-            src="https://cdn.poehali.dev/projects/bd77bfb9-eb01-4e5f-b885-f17ac1c02d19/bucket/0251bab2-d579-46c1-976d-bf78fb7e4134.jpg"
+            src="https://cdn.poehali.dev/projects/bd77bfb9-eb01-4e5f-b885-f17ac1c02d19/bucket/8f07db44-393e-4264-bee1-7aaa0844e775.jpg"
             alt="Batrai"
             className="w-full h-full object-cover object-[center_60%] scale-75 origin-top"
           />
