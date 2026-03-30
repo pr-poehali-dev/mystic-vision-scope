@@ -87,7 +87,7 @@ export default function Featured() {
       <div className="max-w-5xl mx-auto">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-6">
           <div>
-            <p className="text-red-400 uppercase tracking-[0.4em] text-xs mb-3">2025 Тур</p>
+            <p className="text-red-400 uppercase tracking-[0.4em] text-xs mb-3">2026 Тур</p>
             <h2 className="text-5xl lg:text-7xl font-bold tracking-tight">КОНЦЕРТЫ</h2>
           </div>
           <p className="text-neutral-400 max-w-xs leading-relaxed text-sm">
