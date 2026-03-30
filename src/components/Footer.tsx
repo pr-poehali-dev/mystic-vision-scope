@@ -45,22 +45,34 @@ export default function Footer() {
               <div className="flex flex-col gap-1 sm:gap-2">
                 <h3 className="mb-1 sm:mb-2 uppercase text-brand text-xs sm:text-sm tracking-widest">Соцсети</h3>
                 <a
-                  href="https://vk.com/batraiofficial"
+                  href="https://www.instagram.com/batraiofficial"
+                  className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base"
+                >
+                  Instagram
+                </a>
+                <a
+                  href="https://vk.ru/batraiofficial"
                   className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base"
                 >
                   VK
                 </a>
                 <a
-                  href="#"
+                  href="https://youtube.com/@batraiofficial"
+                  className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base"
+                >
+                  YouTube
+                </a>
+                <a
+                  href="https://www.tiktok.com/@batrai.me"
+                  className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base"
+                >
+                  TikTok
+                </a>
+                <a
+                  href="https://t.me/batraiofficial"
                   className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base"
                 >
                   Telegram
-                </a>
-                <a
-                  href="#"
-                  className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base"
-                >
-                  Instagram
                 </a>
               </div>
               <div className="flex flex-col gap-1 sm:gap-2">
