@@ -45,7 +45,7 @@ export default function Footer() {
               <div className="flex flex-col gap-1 sm:gap-2">
                 <h3 className="mb-1 sm:mb-2 uppercase text-brand text-xs sm:text-sm tracking-widest">Соцсети</h3>
                 <a
-                  href="#"
+                  href="https://vk.com/batraiofficial"
                   className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base"
                 >
                   VK
