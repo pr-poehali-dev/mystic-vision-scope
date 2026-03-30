@@ -1,0 +1,21 @@
+{
+  "tests": [
+    {
+      "name": "GET count",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": { "count": 0 },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "POST presave",
+      "method": "POST",
+      "path": "/",
+      "body": { "email": "test@example.com" },
+      "expectedStatus": 200,
+      "expectedBody": { "status": "success" },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
