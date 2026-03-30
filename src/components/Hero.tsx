@@ -1,83 +1,5 @@
 import { useScroll, useTransform, motion } from "framer-motion";
-import { useRef, useEffect, useCallback } from "react";
-
-function CrowdCanvas() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  const animate = useCallback(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const particles: { x: number; y: number; size: number; opacity: number; speed: number; phase: number }[] = [];
-
-    for (let i = 0; i < 180; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: canvas.height * 0.45 + Math.random() * canvas.height * 0.55,
-        size: Math.random() * 2.5 + 0.5,
-        opacity: Math.random() * 0.8 + 0.2,
-        speed: Math.random() * 0.008 + 0.003,
-        phase: Math.random() * Math.PI * 2,
-      });
-    }
-
-    let frame = 0;
-    let animId: number;
-
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      frame++;
-
-      particles.forEach((p) => {
-        const flicker = Math.sin(frame * p.speed + p.phase);
-        const alpha = p.opacity * (0.5 + 0.5 * flicker);
-        const warm = flicker > 0.3;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-
-        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 4);
-        if (warm) {
-          grad.addColorStop(0, `rgba(255, 220, 100, ${alpha})`);
-          grad.addColorStop(1, `rgba(255, 150, 50, 0)`);
-        } else {
-          grad.addColorStop(0, `rgba(255, 255, 255, ${alpha * 0.6})`);
-          grad.addColorStop(1, `rgba(200, 200, 255, 0)`);
-        }
-
-        ctx.fillStyle = grad;
-        ctx.fill();
-      });
-
-      animId = requestAnimationFrame(draw);
-    };
-
-    draw();
-    return () => cancelAnimationFrame(animId);
-  }, []);
-
-  useEffect(() => {
-    const cleanup = animate();
-    const handleResize = () => animate();
-    window.addEventListener("resize", handleResize);
-    return () => {
-      cleanup?.();
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [animate]);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full z-10 pointer-events-none"
-    />
-  );
-}
+import { useRef } from "react";
 
 export default function Hero() {
   const container = useRef<HTMLDivElement>(null);
@@ -105,8 +27,6 @@ export default function Hero() {
         />
         <div className="absolute inset-0 bg-black/55" />
       </motion.div>
-
-      <CrowdCanvas />
 
       <motion.div style={{ opacity }} className="relative z-20 text-center text-white px-6">
         <p className="text-red-400 uppercase tracking-[0.4em] text-sm mb-4 font-light">
