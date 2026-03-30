@@ -30,7 +30,7 @@ export default function Footer() {
                   Spotify
                 </a>
                 <a
-                  href="#"
+                  href="https://music.apple.com/ru/artist/batrai/1441773166"
                   className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base"
                 >
                   Apple Music
