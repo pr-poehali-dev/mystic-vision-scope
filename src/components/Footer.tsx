@@ -85,6 +85,12 @@ export default function Footer() {
                   +7 (952) 987-55-55
                 </a>
                 <p className="text-neutral-500 text-xs">Шамиль</p>
+                <a
+                  href="mailto:batraiofficial@gmail.com"
+                  className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base mt-1"
+                >
+                  batraiofficial@gmail.com
+                </a>
               </div>
             </div>
             <div className="flex flex-col">
