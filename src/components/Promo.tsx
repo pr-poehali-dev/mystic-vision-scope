@@ -21,20 +21,11 @@ export default function Promo() {
           style={{ y }}
           className="relative flex-shrink-0 w-72 lg:w-[480px]"
         >
-          <div
-            className="absolute inset-0 scale-110 rounded-sm"
-            style={{
-              background:
-                "radial-gradient(ellipse at center, rgba(220,38,38,0.35) 0%, transparent 70%)",
-            }}
-          />
           <img
-            src="https://cdn.poehali.dev/projects/bd77bfb9-eb01-4e5f-b885-f17ac1c02d19/bucket/708374ef-a475-4c4e-a275-434b046150af.png"
+            src="https://cdn.poehali.dev/projects/bd77bfb9-eb01-4e5f-b885-f17ac1c02d19/bucket/0251bab2-d579-46c1-976d-bf78fb7e4134.jpg"
             alt="Batrai"
-            className="relative z-10 w-full object-contain drop-shadow-2xl"
-            style={{ filter: "drop-shadow(0 0 40px rgba(220,38,38,0.4))" }}
+            className="relative z-10 w-full object-cover rounded-sm"
           />
-          <div className="absolute bottom-0 left-0 right-0 h-40 z-20" style={{ background: "linear-gradient(to top, #000000 0%, transparent 100%)" }} />
         </motion.div>
 
         <div className="flex flex-col gap-6 text-white">
