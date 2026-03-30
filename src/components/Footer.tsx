@@ -15,6 +15,18 @@ export default function Footer() {
                   href="#"
                   className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base"
                 >
+                  VK Музыка
+                </a>
+                <a
+                  href="#"
+                  className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base"
+                >
+                  Яндекс Музыка
+                </a>
+                <a
+                  href="#"
+                  className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base"
+                >
                   Spotify
                 </a>
                 <a
