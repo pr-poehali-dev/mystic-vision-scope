@@ -1,7 +1,7 @@
 const concerts = [
   {
     date: "15 мая",
-    day: "Четверг",
+    day: "Чт",
     city: "г. Зерноград",
     venue: "РДК",
     ticketUrl: "https://rnd.kassir.ru/koncert/batrai-1",
@@ -9,7 +9,7 @@ const concerts = [
   },
   {
     date: "16 мая",
-    day: "Пятница",
+    day: "Пт",
     city: "г. Новочеркасск",
     venue: "КЗ НПИ",
     ticketUrl: "https://rnd.kassir.ru/koncert/batrai-1#3810038",
@@ -17,7 +17,7 @@ const concerts = [
   },
   {
     date: "17 мая",
-    day: "Суббота",
+    day: "Сб",
     city: "г. Батайск",
     venue: "РДК",
     ticketUrl: "https://rnd.kassir.ru/koncert/batrai-1#3809778",
@@ -25,7 +25,7 @@ const concerts = [
   },
   {
     date: "18 мая",
-    day: "Воскресенье",
+    day: "Вс",
     city: "ст. Кущёвская",
     venue: "РДК",
     ticketUrl: "https://krd.kassir.ru/koncert/rdk-st-kuschyovskaya/batrai-batyir-dolev_2026-05-18",
@@ -33,7 +33,7 @@ const concerts = [
   },
   {
     date: "19 мая",
-    day: "Понедельник",
+    day: "Пн",
     city: "ст. Ленинградская",
     venue: "МБУ ССК",
     ticketUrl: "https://krd.kassir.ru/koncert/mbu-skk-leningradskaya/batrai-batyir-dolev_2026-05-19",
@@ -41,7 +41,7 @@ const concerts = [
   },
   {
     date: "20 мая",
-    day: "Вторник",
+    day: "Вт",
     city: "г. Ейск",
     venue: "ГДК",
     ticketUrl: "https://krd.kassir.ru/koncert/gorodskoy-dvorets-kulturyi-eysk/batrai-batyir-dolev_2026-05-20",
@@ -49,7 +49,7 @@ const concerts = [
   },
   {
     date: "21 мая",
-    day: "Среда",
+    day: "Ср",
     city: "ст. Староминская",
     venue: "РДКС",
     ticketUrl: "https://krd.kassir.ru/koncert/rdks-st-starominskoy/batrai-batyir-dolev_2026-05-21",
@@ -57,7 +57,7 @@ const concerts = [
   },
   {
     date: "22 мая",
-    day: "Четверг",
+    day: "Чт",
     city: "г. Краснодар",
     venue: "Sgt. Pepper's Bar",
     ticketUrl: "https://music.yandex.ru/concert/cda70b7a-b6f3-42d7-b648-d930a58b1c35?utm_source=web&utm_medium=copy_link",
@@ -65,7 +65,7 @@ const concerts = [
   },
   {
     date: "23 мая",
-    day: "Пятница",
+    day: "Пт",
     city: "г. Майкоп",
     venue: "КЗ АГУ",
     ticketUrl: "https://kassa01.ru/pay.php?uid=69b2fe8ac5c34644181ad8cb&partner=kassa01",
@@ -73,7 +73,7 @@ const concerts = [
   },
   {
     date: "29 мая",
-    day: "Четверг",
+    day: "Чт",
     city: "г. Пятигорск",
     venue: "ДК «София»",
     ticketUrl: "https://music.yandex.ru/concert/d8a8af1a-cc11-4402-bd50-bdd92232c7ba?utm_source=web&utm_medium=copy_link",
