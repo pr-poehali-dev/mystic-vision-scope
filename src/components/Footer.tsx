@@ -24,7 +24,7 @@ export default function Footer() {
                   Яндекс Музыка
                 </a>
                 <a
-                  href="#"
+                  href="https://open.spotify.com/artist/5JmDBqUuXToPsL662cAAd0"
                   className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base"
                 >
                   Spotify
