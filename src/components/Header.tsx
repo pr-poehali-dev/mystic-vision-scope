@@ -10,19 +10,19 @@ export default function Header({ className }: HeaderProps) {
         <nav className="flex gap-8">
           <a
             href="#about"
-            className="text-white hover:text-red-400 transition-colors duration-300 uppercase text-sm tracking-wide"
+            className="text-white hover:text-brand transition-colors duration-300 uppercase text-sm tracking-wide"
           >
             О себе
           </a>
           <a
             href="#concerts"
-            className="text-white hover:text-red-400 transition-colors duration-300 uppercase text-sm tracking-wide"
+            className="text-white hover:text-brand transition-colors duration-300 uppercase text-sm tracking-wide"
           >
             Концерты
           </a>
           <a
             href="#music"
-            className="text-white hover:text-red-400 transition-colors duration-300 uppercase text-sm tracking-wide"
+            className="text-white hover:text-brand transition-colors duration-300 uppercase text-sm tracking-wide"
           >
             Музыка
           </a>

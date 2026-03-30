@@ -116,3 +116,18 @@
       sans-serif;
   }
 }
+
+@layer utilities {
+  .text-brand {
+    color: #e00000;
+  }
+  .border-brand {
+    border-color: #e00000;
+  }
+  .bg-brand {
+    background-color: #e00000;
+  }
+  .hover\:bg-brand:hover {
+    background-color: #e00000;
+  }
+}

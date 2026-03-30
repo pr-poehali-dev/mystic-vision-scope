@@ -28,7 +28,7 @@ export default function Promo() {
       </div>
 
       <div className="relative z-10 px-6 lg:px-16 pb-16 lg:pb-24 w-full max-w-4xl">
-        <p className="text-red-400 uppercase tracking-[0.4em] text-xs mb-4">Об исполнителе</p>
+        <p className="text-brand uppercase tracking-[0.4em] text-xs mb-4">Об исполнителе</p>
         <h2
           className="text-5xl lg:text-7xl font-bold leading-tight mb-6"
           style={{ fontFamily: "'DIN Condensed', 'Barlow Condensed', sans-serif", letterSpacing: "0.6em", textIndent: "0.6em" }}
@@ -43,7 +43,7 @@ export default function Promo() {
         </p>
         <a
           href="#concerts"
-          className="inline-block border border-red-500 text-red-400 px-8 py-3 uppercase tracking-widest text-sm hover:bg-red-500 hover:text-white transition-all duration-300"
+          className="inline-block border border-brand text-brand px-8 py-3 uppercase tracking-widest text-sm hover:bg-brand hover:text-white transition-all duration-300"
         >
           Расписание концертов
         </a>

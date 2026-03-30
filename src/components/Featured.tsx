@@ -87,7 +87,7 @@ export default function Featured() {
       <div className="max-w-5xl mx-auto">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-6">
           <div>
-            <p className="text-red-400 uppercase tracking-[0.4em] text-xs mb-3">2026 Тур</p>
+            <p className="text-brand uppercase tracking-[0.4em] text-xs mb-3">2026 Тур</p>
             <h2 className="text-5xl lg:text-7xl font-bold tracking-tight">КОНЦЕРТЫ</h2>
           </div>
           <p className="text-neutral-400 max-w-xs leading-relaxed text-sm">
@@ -107,7 +107,7 @@ export default function Featured() {
                   <div className="text-neutral-500 text-xs uppercase tracking-wide">{concert.day}</div>
                 </div>
                 <div>
-                  <div className="text-xl font-semibold group-hover:text-red-400 transition-colors duration-300">
+                  <div className="text-xl font-semibold group-hover:text-brand transition-colors duration-300">
                     {concert.city}
                   </div>
                   <div className="text-neutral-400 text-sm">{concert.venue}</div>
@@ -121,7 +121,7 @@ export default function Featured() {
               ) : (
                 <a
                   href={concert.ticketUrl}
-                  className="border border-red-500 text-red-400 px-6 py-2.5 uppercase text-xs tracking-widest hover:bg-red-500 hover:text-white transition-all duration-300 w-fit"
+                  className="border border-brand text-brand px-6 py-2.5 uppercase text-xs tracking-widest hover:bg-brand hover:text-white transition-all duration-300 w-fit"
                 >
                   Купить билет
                 </a>

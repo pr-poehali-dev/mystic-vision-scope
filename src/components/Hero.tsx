@@ -29,7 +29,7 @@ export default function Hero() {
       </motion.div>
 
       <motion.div style={{ opacity }} className="relative z-20 text-center text-white px-6">
-        <p className="text-red-400 uppercase tracking-[0.4em] text-sm mb-4 font-light">
+        <p className="text-brand uppercase tracking-[0.4em] text-sm mb-4 font-light">
           Официальный сайт
         </p>
         <h1
