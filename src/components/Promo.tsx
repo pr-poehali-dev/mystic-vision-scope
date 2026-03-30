@@ -22,7 +22,7 @@ export default function Promo() {
           className="relative flex-shrink-0 w-72 lg:w-[480px]"
         >
           <div
-            className="absolute inset-0 scale-160 rounded-0"
+            className="absolute inset-0 scale-110 rounded-sm"
             style={{
               background:
                 "radial-gradient(ellipse at center, rgba(220,38,38,0.35) 0%, transparent 70%)",
