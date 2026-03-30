@@ -77,18 +77,14 @@ export default function Footer() {
               </div>
               <div className="flex flex-col gap-1 sm:gap-2">
                 <h3 className="mb-1 sm:mb-2 uppercase text-brand text-xs sm:text-sm tracking-widest">Контакты</h3>
+                <p className="text-neutral-400 text-xs mb-1">Организация концертов / Сотрудничество</p>
                 <a
-                  href="mailto:booking@nova-music.ru"
+                  href="tel:+79529875555"
                   className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base"
                 >
-                  Буккинг
+                  +7 (952) 987-55-55
                 </a>
-                <a
-                  href="mailto:press@nova-music.ru"
-                  className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base"
-                >
-                  Пресс-служба
-                </a>
+                <p className="text-neutral-500 text-xs">Шамиль</p>
               </div>
             </div>
             <div className="flex flex-col">
