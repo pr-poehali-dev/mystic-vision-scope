@@ -18,7 +18,7 @@ export default function Footer() {
                   VK Музыка
                 </a>
                 <a
-                  href="#"
+                  href="https://music.yandex.ru/artist/6389055?utm_source=web&utm_medium=copy_link"
                   className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base"
                 >
                   Яндекс Музыка
