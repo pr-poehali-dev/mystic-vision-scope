@@ -27,7 +27,7 @@ export default function Promo() {
             className="w-full h-full object-cover object-[center_20%] lg:hidden"
           />
           <img
-            src="https://cdn.poehali.dev/projects/bd77bfb9-eb01-4e5f-b885-f17ac1c02d19/bucket/9312f726-61a6-4088-9596-e7e7dd12828a.jpg"
+            src="https://cdn.poehali.dev/projects/bd77bfb9-eb01-4e5f-b885-f17ac1c02d19/bucket/395366ad-ad65-45f5-b6c8-31d841fd75c1.jpg"
             alt="Batrai"
             className="hidden lg:block w-full h-full object-cover object-center"
           />
