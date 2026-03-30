@@ -36,7 +36,7 @@ export default function Footer() {
                   Apple Music
                 </a>
                 <a
-                  href="#"
+                  href="https://music.youtube.com/channel/UC2_xpEZy3zX3TYyHv7fJbxw"
                   className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base"
                 >
                   YouTube Music
