@@ -60,7 +60,7 @@ const concerts = [
     day: "Пт",
     city: "г. Краснодар",
     venue: "Sgt. Pepper's Bar",
-    ticketUrl: "https://music.yandex.ru/concert/cda70b7a-b6f3-42d7-b648-d930a58b1c35?utm_source=web&utm_medium=copy_link",
+    ticketUrl: "https://afisha.yandex.ru/krasnodar/concert/batrai-12-2026-03-23",
     sold: false,
   },
   {
@@ -72,11 +72,27 @@ const concerts = [
     sold: false,
   },
   {
+    date: "27 мая",
+    day: "Ср",
+    city: "г. Кизляр",
+    venue: "ДК КЭМЗ",
+    ticketUrl: "https://iframeab-pre10704.intickets.ru/seance/71479586/#abiframe",
+    sold: false,
+  },
+  {
+    date: "28 мая",
+    day: "Чт",
+    city: "г. Будённовск",
+    venue: "Клуб Асгард",
+    ticketUrl: "https://iframeab-pre10704.intickets.ru/seance/71485030/#abiframe",
+    sold: false,
+  },
+  {
     date: "29 мая",
     day: "Пт",
     city: "г. Пятигорск",
     venue: "ДК «София»",
-    ticketUrl: "https://music.yandex.ru/concert/d8a8af1a-cc11-4402-bd50-bdd92232c7ba?utm_source=web&utm_medium=copy_link",
+    ticketUrl: "https://iframeab-pre10704.intickets.ru/seance/71354346/#abiframe",
     sold: false,
   },
 ];
