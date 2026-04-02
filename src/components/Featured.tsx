@@ -137,6 +137,8 @@ export default function Featured() {
               ) : (
                 <a
                   href={concert.ticketUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="border border-brand text-brand px-6 py-2.5 uppercase text-xs tracking-widest hover:bg-brand hover:text-white transition-all duration-300 w-fit"
                 >
                   Купить билет
