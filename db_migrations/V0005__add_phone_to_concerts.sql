@@ -1,0 +1,1 @@
+ALTER TABLE concerts ADD COLUMN phone text NOT NULL DEFAULT '';

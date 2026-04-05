@@ -1,5 +1,6 @@
 import { useSiteData } from '@/hooks/useSiteData';
 import type { Concert } from '@/hooks/useSiteData';
+import Icon from '@/components/ui/icon';
 
 const MONTH_ORDER = [
   'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
@@ -107,24 +108,35 @@ export default function Featured() {
                       </div>
                     </div>
 
-                    {concert.sold ? (
-                      <span className="text-neutral-600 uppercase text-xs tracking-widest border border-neutral-700 px-5 py-2.5 w-fit">
-                        Распродано
-                      </span>
-                    ) : concert.ticketUrl ? (
-                      <a
-                        href={concert.ticketUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="border border-brand text-brand px-6 py-2.5 uppercase text-xs tracking-widest hover:bg-brand hover:text-white transition-all duration-300 w-fit"
-                      >
-                        Купить билет
-                      </a>
-                    ) : (
-                      <span className="text-neutral-500 uppercase text-xs tracking-widest border border-neutral-700 px-6 py-2.5 w-fit">
-                        Скоро
-                      </span>
-                    )}
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      {concert.phone && (
+                        <a
+                          href={`tel:${concert.phone}`}
+                          className="border border-neutral-700 text-neutral-400 px-3 py-2.5 hover:border-neutral-500 hover:text-white transition-all duration-300"
+                          title={concert.phone}
+                        >
+                          <Icon name="Phone" size={14} />
+                        </a>
+                      )}
+                      {concert.sold ? (
+                        <span className="text-neutral-600 uppercase text-xs tracking-widest border border-neutral-700 px-5 py-2.5">
+                          Распродано
+                        </span>
+                      ) : concert.ticketUrl ? (
+                        <a
+                          href={concert.ticketUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="border border-brand text-brand px-6 py-2.5 uppercase text-xs tracking-widest hover:bg-brand hover:text-white transition-all duration-300"
+                        >
+                          Купить билет
+                        </a>
+                      ) : (
+                        <span className="text-neutral-500 uppercase text-xs tracking-widest border border-neutral-700 px-6 py-2.5">
+                          Скоро
+                        </span>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>

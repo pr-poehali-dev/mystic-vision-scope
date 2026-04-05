@@ -13,6 +13,7 @@ export interface Concert {
   sold: boolean;
   sort_order: number;
   address: string;
+  phone: string;
 }
 
 export interface SiteSettings {

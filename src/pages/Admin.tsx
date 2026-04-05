@@ -364,9 +364,15 @@ function ConcertForm({
           <input value={form.venue} onChange={e => set('venue', e.target.value)} placeholder="ДК «София»" className="w-full bg-neutral-700 text-white px-3 py-2 text-sm outline-none border border-neutral-600 focus:border-brand" />
         </div>
       </div>
-      <div>
-        <label className="text-neutral-400 text-xs mb-1 block">Адрес площадки</label>
-        <input value={form.address || ''} onChange={e => set('address', e.target.value)} placeholder="ул. Красная, 5" className="w-full bg-neutral-700 text-white px-3 py-2 text-sm outline-none border border-neutral-600 focus:border-brand" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <label className="text-neutral-400 text-xs mb-1 block">Адрес площадки</label>
+          <input value={form.address || ''} onChange={e => set('address', e.target.value)} placeholder="ул. Красная, 5" className="w-full bg-neutral-700 text-white px-3 py-2 text-sm outline-none border border-neutral-600 focus:border-brand" />
+        </div>
+        <div>
+          <label className="text-neutral-400 text-xs mb-1 block">Телефон организатора</label>
+          <input value={form.phone || ''} onChange={e => set('phone', e.target.value)} placeholder="+7 900 000-00-00" className="w-full bg-neutral-700 text-white px-3 py-2 text-sm outline-none border border-neutral-600 focus:border-brand" />
+        </div>
       </div>
       <div>
         <label className="text-neutral-400 text-xs mb-1 block">Ссылка на билеты</label>
