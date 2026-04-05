@@ -69,9 +69,11 @@ export default function Featured() {
                   >
                     <div className="flex items-center gap-6 lg:gap-10">
                       <div className="text-center min-w-[56px]">
-                        <div className="text-2xl font-bold leading-tight">{concert.date.split(' ')[0]}</div>
+                        <div className="text-2xl font-bold leading-tight">
+                          {concert.date.split(' ')[0]}.{MONTH_NUM[getMonth(concert.date)] || ''}
+                        </div>
                         <div className="text-neutral-500 text-xs uppercase tracking-wide">
-                          {MONTH_NUM[getMonth(concert.date)] || ''}{concert.day ? ` · ${concert.day}` : ''}{concert.time ? ` · ${concert.time}` : ''}
+                          {concert.day}{concert.time ? ` · ${concert.time}` : ''}
                         </div>
                       </div>
                       <div>
