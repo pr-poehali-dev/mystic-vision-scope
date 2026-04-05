@@ -26,20 +26,21 @@ def handler(event: dict, context) -> dict:
         return {'statusCode': 200, 'headers': CORS_HEADERS, 'body': ''}
 
     method = event.get('httpMethod', 'GET')
-    path = event.get('path', '/')
+    params = event.get('queryStringParameters') or {}
+    action = params.get('action', '')
     body = {}
     if event.get('body'):
         body = json.loads(event['body'])
 
-    # POST /login
-    if method == 'POST' and path.endswith('/login'):
+    # action=login
+    if action == 'login' and method == 'POST':
         password = body.get('password', '')
         if password == ADMIN_PASSWORD and ADMIN_PASSWORD != '':
             return {'statusCode': 200, 'headers': CORS_HEADERS, 'body': json.dumps({'ok': True})}
         return {'statusCode': 401, 'headers': CORS_HEADERS, 'body': json.dumps({'ok': False, 'error': 'Неверный пароль'})}
 
-    # GET /data — получить все данные (публичный)
-    if method == 'GET' and path.endswith('/data'):
+    # action=data — получить все данные (публичный)
+    if action == 'data' and method == 'GET':
         conn = get_conn()
         cur = conn.cursor()
         cur.execute(f'SELECT id, date_text, day_text, city, venue, ticket_url, sold, sort_order FROM {SCHEMA}.concerts ORDER BY sort_order')
@@ -57,8 +58,8 @@ def handler(event: dict, context) -> dict:
     if not check_auth(event):
         return {'statusCode': 401, 'headers': CORS_HEADERS, 'body': json.dumps({'error': 'Unauthorized'})}
 
-    # POST /concerts — создать концерт
-    if method == 'POST' and path.endswith('/concerts'):
+    # action=concerts POST — создать концерт
+    if action == 'concerts' and method == 'POST':
         conn = get_conn()
         cur = conn.cursor()
         cur.execute(f'SELECT COALESCE(MAX(sort_order),0)+1 FROM {SCHEMA}.concerts')
@@ -72,8 +73,8 @@ def handler(event: dict, context) -> dict:
         conn.close()
         return {'statusCode': 200, 'headers': CORS_HEADERS, 'body': json.dumps({'ok': True, 'id': new_id})}
 
-    # PUT /concerts — обновить концерт
-    if method == 'PUT' and path.endswith('/concerts'):
+    # action=concerts PUT — обновить концерт
+    if action == 'concerts' and method == 'PUT':
         conn = get_conn()
         cur = conn.cursor()
         cur.execute(
@@ -84,9 +85,9 @@ def handler(event: dict, context) -> dict:
         conn.close()
         return {'statusCode': 200, 'headers': CORS_HEADERS, 'body': json.dumps({'ok': True})}
 
-    # DELETE /concerts?id=X — удалить концерт
-    if method == 'DELETE' and path.endswith('/concerts'):
-        concert_id = event.get('queryStringParameters', {}).get('id')
+    # action=concerts DELETE — удалить концерт
+    if action == 'concerts' and method == 'DELETE':
+        concert_id = params.get('id')
         conn = get_conn()
         cur = conn.cursor()
         cur.execute(f'DELETE FROM {SCHEMA}.concerts WHERE id=%s', (concert_id,))
@@ -94,8 +95,8 @@ def handler(event: dict, context) -> dict:
         conn.close()
         return {'statusCode': 200, 'headers': CORS_HEADERS, 'body': json.dumps({'ok': True})}
 
-    # PUT /settings — обновить настройки
-    if method == 'PUT' and path.endswith('/settings'):
+    # action=settings PUT — обновить настройки
+    if action == 'settings' and method == 'PUT':
         conn = get_conn()
         cur = conn.cursor()
         for key, value in body.items():

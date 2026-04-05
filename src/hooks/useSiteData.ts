@@ -46,7 +46,7 @@ export function useSiteData() {
   return useQuery<SiteData>({
     queryKey: ['site-data'],
     queryFn: async () => {
-      const res = await fetch(`${ADMIN_URL}/data`);
+      const res = await fetch(`${ADMIN_URL}?action=data`);
       return res.json();
     },
     staleTime: 1000 * 60 * 5,

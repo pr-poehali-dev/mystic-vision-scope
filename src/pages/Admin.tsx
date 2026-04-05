@@ -19,14 +19,14 @@ export default function Admin() {
   const [newConcert, setNewConcert] = useState(false);
   const queryClient = useQueryClient();
 
-  const apiFetch = (path: string, options: RequestInit = {}) =>
-    fetch(`${ADMIN_URL}${path}`, {
+  const apiFetch = (action: string, options: RequestInit = {}, extra = '') =>
+    fetch(`${ADMIN_URL}?action=${action}${extra}`, {
       ...options,
       headers: { 'Content-Type': 'application/json', 'X-Admin-Token': token, ...(options.headers || {}) },
     });
 
   async function loadData() {
-    const res = await fetch(`${ADMIN_URL}/data`);
+    const res = await fetch(`${ADMIN_URL}?action=data`);
     const data = await res.json();
     setConcerts(data.concerts || []);
     setSettings(data.settings || {});
@@ -34,7 +34,7 @@ export default function Admin() {
 
   useEffect(() => {
     if (token) {
-      apiFetch('/').then(r => {
+      apiFetch('settings', { method: 'GET' }).then(r => {
         if (r.status !== 401) setAuthed(true);
         else { setToken(''); localStorage.removeItem(STORAGE_KEY); }
       });
@@ -47,7 +47,7 @@ export default function Admin() {
 
   async function handleLogin() {
     setLoginError('');
-    const res = await fetch(`${ADMIN_URL}/login`, {
+    const res = await fetch(`${ADMIN_URL}?action=login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ password: loginInput }),
@@ -70,7 +70,7 @@ export default function Admin() {
 
   async function saveSettings() {
     setSaving(true);
-    await apiFetch('/settings', { method: 'PUT', body: JSON.stringify(settings) });
+    await apiFetch('settings', { method: 'PUT', body: JSON.stringify(settings) });
     queryClient.invalidateQueries({ queryKey: ['site-data'] });
     setSaveMsg('Сохранено!');
     setSaving(false);
@@ -79,7 +79,7 @@ export default function Admin() {
 
   async function saveConcert(c: Concert) {
     setSaving(true);
-    await apiFetch('/concerts', { method: 'PUT', body: JSON.stringify(c) });
+    await apiFetch('concerts', { method: 'PUT', body: JSON.stringify(c) });
     await loadData();
     queryClient.invalidateQueries({ queryKey: ['site-data'] });
     setEditingConcert(null);
@@ -88,7 +88,7 @@ export default function Admin() {
 
   async function createConcert(c: Omit<Concert, 'id' | 'sort_order'>) {
     setSaving(true);
-    await apiFetch('/concerts', { method: 'POST', body: JSON.stringify(c) });
+    await apiFetch('concerts', { method: 'POST', body: JSON.stringify(c) });
     await loadData();
     queryClient.invalidateQueries({ queryKey: ['site-data'] });
     setNewConcert(false);
@@ -97,7 +97,7 @@ export default function Admin() {
 
   async function deleteConcert(id: number) {
     if (!confirm('Удалить концерт?')) return;
-    await apiFetch(`/concerts?id=${id}`, { method: 'DELETE' });
+    await apiFetch('concerts', { method: 'DELETE' }, `&id=${id}`);
     await loadData();
     queryClient.invalidateQueries({ queryKey: ['site-data'] });
   }
