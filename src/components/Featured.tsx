@@ -90,7 +90,8 @@ export default function Featured() {
                     <div className="flex items-center gap-6 lg:gap-10">
                       <div>
                         <div className="flex items-baseline gap-3">
-                          <span className="text-2xl font-bold leading-tight">{concert.date}</span>
+                          <span className="text-2xl font-bold leading-tight w-32">{concert.date}</span>
+                          <span className="w-px h-4 bg-neutral-700 self-center flex-shrink-0" />
                           <span className="text-2xl font-bold leading-tight group-hover:text-brand transition-colors duration-300">{concert.city}</span>
                         </div>
                         <div className="flex items-center gap-2 mt-0.5">
