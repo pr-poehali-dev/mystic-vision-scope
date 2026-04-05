@@ -88,23 +88,17 @@ export default function Featured() {
                     className="flex flex-col sm:flex-row sm:items-center justify-between py-6 gap-4 group"
                   >
                     <div className="flex items-center gap-6 lg:gap-10">
-                      <div className="text-center min-w-[56px]">
-                        <div className="text-2xl font-bold leading-tight">{concert.date}</div>
-                        <div className="text-neutral-500 text-xs uppercase tracking-wide">
-                          {concert.day}{concert.time ? ` · ${concert.time}` : ''}
-                        </div>
-                      </div>
                       <div>
-                        <div className="text-xl font-semibold group-hover:text-brand transition-colors duration-300">
-                          {concert.city}
+                        <div className="flex items-baseline gap-3">
+                          <span className="text-2xl font-bold leading-tight">{concert.date}</span>
+                          <span className="text-2xl font-bold leading-tight group-hover:text-brand transition-colors duration-300">{concert.city}</span>
                         </div>
-                        <div className="text-neutral-400 text-sm">{concert.venue}</div>
-                        {concert.address && (
-                          <div className="flex items-center gap-1 mt-1">
-                            <span className="text-neutral-600 text-xs">—</span>
-                            <span className="text-neutral-600 text-xs tracking-wide">{concert.address}</span>
-                          </div>
-                        )}
+                        <div className="flex items-center gap-2 mt-0.5">
+                          <span className="text-neutral-500 text-xs uppercase tracking-wide">{concert.day}{concert.time ? ` · ${concert.time}` : ''}</span>
+                          {concert.venue && <span className="text-neutral-600 text-xs">·</span>}
+                          <span className="text-neutral-400 text-xs">{concert.venue}</span>
+                          {concert.address && <><span className="text-neutral-600 text-xs">·</span><span className="text-neutral-600 text-xs">{concert.address}</span></>}
+                        </div>
                       </div>
                     </div>
 
