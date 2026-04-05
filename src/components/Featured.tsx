@@ -66,6 +66,13 @@ export default function Featured() {
           </p>
         </div>
 
+        {groups.length === 0 && (
+          <div className="border border-neutral-800 py-16 text-center">
+            <p className="text-brand uppercase tracking-[0.4em] text-xs mb-3">Скоро</p>
+            <p className="text-neutral-400 text-sm">Новые даты концертов будут объявлены</p>
+          </div>
+        )}
+
         <div className="space-y-12">
           {groups.map(({ month, items }) => (
             <div key={month}>
