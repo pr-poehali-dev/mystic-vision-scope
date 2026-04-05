@@ -1,8 +1,32 @@
 import { useSiteData } from '@/hooks/useSiteData';
+import type { Concert } from '@/hooks/useSiteData';
+
+const MONTH_ORDER = [
+  'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+  'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
+];
+
+function getMonth(date: string): string {
+  const parts = date.trim().split(' ');
+  return parts.length >= 2 ? parts[1] : date;
+}
+
+function groupByMonth(concerts: Concert[]): { month: string; items: Concert[] }[] {
+  const map = new Map<string, Concert[]>();
+  for (const c of concerts) {
+    const month = getMonth(c.date);
+    if (!map.has(month)) map.set(month, []);
+    map.get(month)!.push(c);
+  }
+  return Array.from(map.entries())
+    .sort(([a], [b]) => MONTH_ORDER.indexOf(a) - MONTH_ORDER.indexOf(b))
+    .map(([month, items]) => ({ month, items }));
+}
 
 export default function Featured() {
   const { data } = useSiteData();
   const concerts = data?.concerts || [];
+  const groups = groupByMonth(concerts);
 
   return (
     <div id="concerts" className="bg-black text-white min-h-screen px-6 py-20 lg:py-32">
@@ -17,45 +41,55 @@ export default function Featured() {
           </p>
         </div>
 
-        <div className="flex flex-col divide-y divide-neutral-800">
-          {concerts.map((concert, i) => (
-            <div
-              key={concert.id ?? i}
-              className="flex flex-col sm:flex-row sm:items-center justify-between py-6 gap-4 group"
-            >
-              <div className="flex items-center gap-6 lg:gap-10">
-                <div className="text-center min-w-[56px]">
-                  <div className="text-2xl font-bold leading-tight">{concert.date}</div>
-                  <div className="text-neutral-500 text-xs uppercase tracking-wide">
-                    {concert.day}{concert.time ? ` · ${concert.time}` : ''}
-                  </div>
-                </div>
-                <div>
-                  <div className="text-xl font-semibold group-hover:text-brand transition-colors duration-300">
-                    {concert.city}
-                  </div>
-                  <div className="text-neutral-400 text-sm">{concert.venue}</div>
-                </div>
+        <div className="space-y-12">
+          {groups.map(({ month, items }) => (
+            <div key={month}>
+              <div className="flex items-center gap-4 mb-4">
+                <span className="text-neutral-500 uppercase tracking-[0.3em] text-xs">{month}</span>
+                <div className="flex-1 h-px bg-neutral-800" />
               </div>
+              <div className="flex flex-col divide-y divide-neutral-800">
+                {items.map((concert, i) => (
+                  <div
+                    key={concert.id ?? i}
+                    className="flex flex-col sm:flex-row sm:items-center justify-between py-6 gap-4 group"
+                  >
+                    <div className="flex items-center gap-6 lg:gap-10">
+                      <div className="text-center min-w-[56px]">
+                        <div className="text-2xl font-bold leading-tight">{concert.date.split(' ')[0]}</div>
+                        <div className="text-neutral-500 text-xs uppercase tracking-wide">
+                          {concert.day}{concert.time ? ` · ${concert.time}` : ''}
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-xl font-semibold group-hover:text-brand transition-colors duration-300">
+                          {concert.city}
+                        </div>
+                        <div className="text-neutral-400 text-sm">{concert.venue}</div>
+                      </div>
+                    </div>
 
-              {concert.sold ? (
-                <span className="text-neutral-600 uppercase text-xs tracking-widest border border-neutral-700 px-5 py-2.5 w-fit">
-                  Распродано
-                </span>
-              ) : concert.ticketUrl ? (
-                <a
-                  href={concert.ticketUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="border border-brand text-brand px-6 py-2.5 uppercase text-xs tracking-widest hover:bg-brand hover:text-white transition-all duration-300 w-fit"
-                >
-                  Купить билет
-                </a>
-              ) : (
-                <span className="text-neutral-500 uppercase text-xs tracking-widest border border-neutral-700 px-6 py-2.5 w-fit">
-                  Скоро
-                </span>
-              )}
+                    {concert.sold ? (
+                      <span className="text-neutral-600 uppercase text-xs tracking-widest border border-neutral-700 px-5 py-2.5 w-fit">
+                        Распродано
+                      </span>
+                    ) : concert.ticketUrl ? (
+                      <a
+                        href={concert.ticketUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="border border-brand text-brand px-6 py-2.5 uppercase text-xs tracking-widest hover:bg-brand hover:text-white transition-all duration-300 w-fit"
+                      >
+                        Купить билет
+                      </a>
+                    ) : (
+                      <span className="text-neutral-500 uppercase text-xs tracking-widest border border-neutral-700 px-6 py-2.5 w-fit">
+                        Скоро
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
         </div>
