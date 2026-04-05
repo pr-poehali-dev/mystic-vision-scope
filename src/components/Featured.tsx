@@ -24,6 +24,18 @@ function getMonth(date: string): string {
   return parts.length >= 2 ? parts[1] : date;
 }
 
+function isPast(date: string): boolean {
+  const parts = date.trim().split(' ');
+  if (parts.length < 2) return false;
+  const day = parseInt(parts[0]);
+  const monthIdx = MONTH_ORDER.indexOf(parts[1]);
+  if (monthIdx === -1) return false;
+  const now = new Date();
+  const concertDate = new Date(now.getFullYear(), monthIdx, day);
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  return concertDate < today;
+}
+
 function groupByMonth(concerts: Concert[]): { month: string; items: Concert[] }[] {
   const map = new Map<string, Concert[]>();
   for (const c of concerts) {
@@ -38,7 +50,7 @@ function groupByMonth(concerts: Concert[]): { month: string; items: Concert[] }[
 
 export default function Featured() {
   const { data } = useSiteData();
-  const concerts = data?.concerts || [];
+  const concerts = (data?.concerts || []).filter(c => !isPast(c.date));
   const groups = groupByMonth(concerts);
 
   return (
