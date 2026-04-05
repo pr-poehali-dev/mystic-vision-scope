@@ -90,7 +90,6 @@ export default function Featured() {
                     <div className="flex items-center gap-6 lg:gap-10">
                       <div>
                         <div className="flex gap-3">
-                          <div className="w-px bg-neutral-700 flex-shrink-0" />
                           <div>
                             <div className="flex items-baseline gap-4">
                               <span className="text-2xl font-bold leading-tight w-32">{concert.date}</span>
@@ -101,6 +100,7 @@ export default function Featured() {
                               <span className="text-neutral-500 text-xs">{concert.venue}{concert.address ? ` · ${concert.address}` : ''}</span>
                             </div>
                           </div>
+                          <div className="w-px bg-neutral-700 flex-shrink-0" />
                         </div>
                       </div>
                     </div>
