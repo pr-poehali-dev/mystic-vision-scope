@@ -365,6 +365,10 @@ function ConcertForm({
         </div>
       </div>
       <div>
+        <label className="text-neutral-400 text-xs mb-1 block">Адрес площадки</label>
+        <input value={form.address || ''} onChange={e => set('address', e.target.value)} placeholder="ул. Красная, 5" className="w-full bg-neutral-700 text-white px-3 py-2 text-sm outline-none border border-neutral-600 focus:border-brand" />
+      </div>
+      <div>
         <label className="text-neutral-400 text-xs mb-1 block">Ссылка на билеты</label>
         <input value={form.ticketUrl} onChange={e => set('ticketUrl', e.target.value)} placeholder="https://..." className="w-full bg-neutral-700 text-white px-3 py-2 text-sm outline-none border border-neutral-600 focus:border-brand" />
       </div>

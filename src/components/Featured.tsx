@@ -98,6 +98,12 @@ export default function Featured() {
                           {concert.city}
                         </div>
                         <div className="text-neutral-400 text-sm">{concert.venue}</div>
+                        {concert.address && (
+                          <div className="flex items-center gap-1 mt-1">
+                            <span className="text-neutral-600 text-xs">—</span>
+                            <span className="text-neutral-600 text-xs tracking-wide">{concert.address}</span>
+                          </div>
+                        )}
                       </div>
                     </div>
 

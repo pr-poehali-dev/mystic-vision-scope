@@ -12,6 +12,7 @@ export interface Concert {
   ticketUrl: string;
   sold: boolean;
   sort_order: number;
+  address: string;
 }
 
 export interface SiteSettings {

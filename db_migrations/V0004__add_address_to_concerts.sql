@@ -1,0 +1,1 @@
+ALTER TABLE concerts ADD COLUMN address text NOT NULL DEFAULT '';
