@@ -192,7 +192,7 @@ export default function Admin() {
                   ) : (
                     <div className="flex items-center justify-between bg-neutral-900 px-4 py-3 gap-4">
                       <div className="flex items-center gap-4 min-w-0">
-                        <span className="text-brand text-sm font-bold whitespace-nowrap">{c.date} {c.day}</span>
+                        <span className="text-brand text-sm font-bold whitespace-nowrap">{c.date} {c.day}{c.time ? ` · ${c.time}` : ''}</span>
                         <div className="min-w-0">
                           <div className="font-medium truncate">{c.city}</div>
                           <div className="text-neutral-400 text-xs truncate">{c.venue}</div>
