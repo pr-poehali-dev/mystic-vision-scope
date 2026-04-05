@@ -291,6 +291,18 @@ function Field({ label, value, onChange, textarea }: { label: string; value: str
   );
 }
 
+const DAYS_RU = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+const MONTHS_RU = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+
+function dateToDisplay(iso: string): { date: string; day: string } {
+  if (!iso) return { date: '', day: '' };
+  const d = new Date(iso + 'T00:00:00');
+  return {
+    date: `${d.getDate()} ${MONTHS_RU[d.getMonth()]}`,
+    day: DAYS_RU[d.getDay()],
+  };
+}
+
 function ConcertForm({
   initial, onSave, onCancel, saving, isNew,
 }: {
@@ -301,18 +313,31 @@ function ConcertForm({
   isNew?: boolean;
 }) {
   const [form, setForm] = useState(initial);
+  const [isoDate, setIsoDate] = useState('');
   const set = (k: keyof Concert, v: string | boolean) => setForm(f => ({ ...f, [k]: v }));
+
+  function handleDateChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const iso = e.target.value;
+    setIsoDate(iso);
+    const { date, day } = dateToDisplay(iso);
+    setForm(f => ({ ...f, date, day }));
+  }
 
   return (
     <div className="bg-neutral-800 p-4 space-y-3 mb-2">
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <div>
+        <div className="sm:col-span-2">
           <label className="text-neutral-400 text-xs mb-1 block">Дата</label>
-          <input value={form.date} onChange={e => set('date', e.target.value)} placeholder="15 мая" className="w-full bg-neutral-700 text-white px-3 py-2 text-sm outline-none border border-neutral-600 focus:border-brand" />
-        </div>
-        <div>
-          <label className="text-neutral-400 text-xs mb-1 block">День недели</label>
-          <input value={form.day} onChange={e => set('day', e.target.value)} placeholder="Пт" className="w-full bg-neutral-700 text-white px-3 py-2 text-sm outline-none border border-neutral-600 focus:border-brand" />
+          <input
+            type="date"
+            value={isoDate}
+            onChange={handleDateChange}
+            className="w-full bg-neutral-700 text-white px-3 py-2 text-sm outline-none border border-neutral-600 focus:border-brand"
+            style={{ colorScheme: 'dark' }}
+          />
+          {form.date && (
+            <div className="text-neutral-400 text-xs mt-1">{form.date} ({form.day})</div>
+          )}
         </div>
         <div>
           <label className="text-neutral-400 text-xs mb-1 block">Город</label>

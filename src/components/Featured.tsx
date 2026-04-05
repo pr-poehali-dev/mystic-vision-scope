@@ -40,7 +40,7 @@ export default function Featured() {
                 <span className="text-neutral-600 uppercase text-xs tracking-widest border border-neutral-700 px-5 py-2.5 w-fit">
                   Распродано
                 </span>
-              ) : (
+              ) : concert.ticketUrl ? (
                 <a
                   href={concert.ticketUrl}
                   target="_blank"
@@ -49,6 +49,10 @@ export default function Featured() {
                 >
                   Купить билет
                 </a>
+              ) : (
+                <span className="text-neutral-500 uppercase text-xs tracking-widest border border-neutral-700 px-6 py-2.5 w-fit">
+                  Скоро
+                </span>
               )}
             </div>
           ))}
