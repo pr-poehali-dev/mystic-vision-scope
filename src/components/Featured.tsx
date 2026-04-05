@@ -89,18 +89,16 @@ export default function Featured() {
                   >
                     <div className="flex items-center gap-6 lg:gap-10">
                       <div>
-                        <div className="flex gap-3">
-                          <div>
-                            <div className="flex items-baseline gap-4">
-                              <span className="text-2xl font-bold leading-tight w-32">{concert.date}</span>
-                              <span className="text-2xl font-bold leading-tight group-hover:text-brand transition-colors duration-300">{concert.city}</span>
-                            </div>
-                            <div className="flex gap-4 mt-1">
-                              <span className="text-neutral-500 text-xs uppercase tracking-wide w-32">{concert.day}{concert.time ? ` · ${concert.time}` : ''}</span>
-                              <span className="text-neutral-500 text-xs">{concert.venue}{concert.address ? ` · ${concert.address}` : ''}</span>
-                            </div>
+                        <div className="flex items-stretch gap-4">
+                          <div className="w-28 flex-shrink-0">
+                            <div className="text-2xl font-bold leading-tight">{concert.date}</div>
+                            <div className="text-neutral-500 text-xs uppercase tracking-wide mt-1">{concert.day}{concert.time ? ` · ${concert.time}` : ''}</div>
                           </div>
                           <div className="w-px bg-neutral-700 flex-shrink-0" />
+                          <div>
+                            <div className="text-2xl font-bold leading-tight group-hover:text-brand transition-colors duration-300">{concert.city}</div>
+                            <div className="text-neutral-500 text-xs mt-1">{concert.venue}{concert.address ? ` · ${concert.address}` : ''}</div>
+                          </div>
                         </div>
                       </div>
                     </div>
