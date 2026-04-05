@@ -85,7 +85,7 @@ export default function Featured() {
                 {items.map((concert, i) => (
                   <div
                     key={concert.id ?? i}
-                    className="flex flex-col sm:flex-row sm:items-center justify-between py-6 gap-4 group items-end sm:items-center"
+                    className="flex flex-col sm:flex-row sm:items-center justify-between py-6 gap-4 group"
                   >
                     <div className="flex items-center gap-6 lg:gap-10">
                       <div>
