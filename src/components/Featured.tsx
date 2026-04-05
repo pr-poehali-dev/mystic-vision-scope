@@ -94,11 +94,14 @@ export default function Featured() {
                           <span className="w-px h-4 bg-neutral-700 self-center flex-shrink-0" />
                           <span className="text-2xl font-bold leading-tight group-hover:text-brand transition-colors duration-300">{concert.city}</span>
                         </div>
-                        <div className="flex items-center gap-2 mt-0.5">
-                          <span className="text-neutral-500 text-xs uppercase tracking-wide">{concert.day}{concert.time ? ` · ${concert.time}` : ''}</span>
-                          {concert.venue && <span className="text-neutral-600 text-xs">·</span>}
-                          <span className="text-neutral-400 text-xs">{concert.venue}</span>
-                          {concert.address && <><span className="text-neutral-600 text-xs">·</span><span className="text-neutral-600 text-xs">{concert.address}</span></>}
+                        <div className="flex gap-3 mt-1.5">
+                          <div className="w-32 flex-shrink-0">
+                            <span className="text-neutral-500 text-xs uppercase tracking-wide">{concert.day}{concert.time ? ` · ${concert.time}` : ''}</span>
+                          </div>
+                          <div className="w-px bg-neutral-800 flex-shrink-0" />
+                          <div className="text-neutral-500 text-xs">
+                            {concert.venue}{concert.address ? ` · ${concert.address}` : ''}
+                          </div>
                         </div>
                       </div>
                     </div>
