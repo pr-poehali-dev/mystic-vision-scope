@@ -43,10 +43,10 @@ def handler(event: dict, context) -> dict:
     if action == 'data' and method == 'GET':
         conn = get_conn()
         cur = conn.cursor()
-        cur.execute(f'SELECT id, date_text, day_text, city, venue, ticket_url, sold, sort_order FROM {SCHEMA}.concerts ORDER BY sort_order')
+        cur.execute(f'SELECT id, date_text, day_text, city, venue, ticket_url, sold, sort_order, time_text FROM {SCHEMA}.concerts ORDER BY sort_order')
         rows = cur.fetchall()
         concerts = [
-            {'id': r[0], 'date': r[1], 'day': r[2], 'city': r[3], 'venue': r[4], 'ticketUrl': r[5], 'sold': r[6], 'sort_order': r[7]}
+            {'id': r[0], 'date': r[1], 'day': r[2], 'city': r[3], 'venue': r[4], 'ticketUrl': r[5], 'sold': r[6], 'sort_order': r[7], 'time': r[8]}
             for r in rows
         ]
         cur.execute(f'SELECT key, value FROM {SCHEMA}.site_settings')
@@ -65,8 +65,8 @@ def handler(event: dict, context) -> dict:
         cur.execute(f'SELECT COALESCE(MAX(sort_order),0)+1 FROM {SCHEMA}.concerts')
         next_order = cur.fetchone()[0]
         cur.execute(
-            f'INSERT INTO {SCHEMA}.concerts (date_text, day_text, city, venue, ticket_url, sold, sort_order) VALUES (%s,%s,%s,%s,%s,%s,%s) RETURNING id',
-            (body['date'], body['day'], body['city'], body['venue'], body['ticketUrl'], body.get('sold', False), next_order)
+            f'INSERT INTO {SCHEMA}.concerts (date_text, day_text, city, venue, ticket_url, sold, sort_order, time_text) VALUES (%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id',
+            (body['date'], body['day'], body['city'], body['venue'], body['ticketUrl'], body.get('sold', False), next_order, body.get('time', ''))
         )
         new_id = cur.fetchone()[0]
         conn.commit()
@@ -78,8 +78,8 @@ def handler(event: dict, context) -> dict:
         conn = get_conn()
         cur = conn.cursor()
         cur.execute(
-            f'UPDATE {SCHEMA}.concerts SET date_text=%s, day_text=%s, city=%s, venue=%s, ticket_url=%s, sold=%s, updated_at=NOW() WHERE id=%s',
-            (body['date'], body['day'], body['city'], body['venue'], body['ticketUrl'], body.get('sold', False), body['id'])
+            f'UPDATE {SCHEMA}.concerts SET date_text=%s, day_text=%s, city=%s, venue=%s, ticket_url=%s, sold=%s, time_text=%s, updated_at=NOW() WHERE id=%s',
+            (body['date'], body['day'], body['city'], body['venue'], body['ticketUrl'], body.get('sold', False), body.get('time', ''), body['id'])
         )
         conn.commit()
         conn.close()

@@ -6,6 +6,7 @@ export interface Concert {
   id: number;
   date: string;
   day: string;
+  time: string;
   city: string;
   venue: string;
   ticketUrl: string;

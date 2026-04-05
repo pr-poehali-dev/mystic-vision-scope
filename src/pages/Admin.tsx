@@ -171,7 +171,7 @@ export default function Admin() {
 
             {newConcert && (
               <ConcertForm
-                initial={{ id: 0, date: '', day: '', city: '', venue: '', ticketUrl: '', sold: false, sort_order: 0 }}
+                initial={{ id: 0, date: '', day: '', time: '', city: '', venue: '', ticketUrl: '', sold: false, sort_order: 0 }}
                 onSave={c => createConcert(c)}
                 onCancel={() => setNewConcert(false)}
                 saving={saving}
@@ -338,6 +338,16 @@ function ConcertForm({
           {form.date && (
             <div className="text-neutral-400 text-xs mt-1">{form.date} ({form.day})</div>
           )}
+        </div>
+        <div>
+          <label className="text-neutral-400 text-xs mb-1 block">Время начала</label>
+          <input
+            type="time"
+            value={form.time || ''}
+            onChange={e => set('time', e.target.value)}
+            className="w-full bg-neutral-700 text-white px-3 py-2 text-sm outline-none border border-neutral-600 focus:border-brand"
+            style={{ colorScheme: 'dark' }}
+          />
         </div>
         <div>
           <label className="text-neutral-400 text-xs mb-1 block">Город</label>

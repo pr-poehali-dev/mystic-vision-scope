@@ -1,0 +1,1 @@
+ALTER TABLE t_p78741689_mystic_vision_scope.concerts ADD COLUMN IF NOT EXISTS time_text VARCHAR(10) NOT NULL DEFAULT '';

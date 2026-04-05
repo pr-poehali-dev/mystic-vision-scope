@@ -26,7 +26,9 @@ export default function Featured() {
               <div className="flex items-center gap-6 lg:gap-10">
                 <div className="text-center min-w-[56px]">
                   <div className="text-2xl font-bold leading-tight">{concert.date}</div>
-                  <div className="text-neutral-500 text-xs uppercase tracking-wide">{concert.day}</div>
+                  <div className="text-neutral-500 text-xs uppercase tracking-wide">
+                    {concert.day}{concert.time ? ` · ${concert.time}` : ''}
+                  </div>
                 </div>
                 <div>
                   <div className="text-xl font-semibold group-hover:text-brand transition-colors duration-300">
