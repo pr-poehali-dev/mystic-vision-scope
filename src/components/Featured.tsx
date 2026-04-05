@@ -6,6 +6,19 @@ const MONTH_ORDER = [
   'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
 ];
 
+const MONTH_NAMES: Record<string, string> = {
+  'января': 'ЯНВАРЬ', 'февраля': 'ФЕВРАЛЬ', 'марта': 'МАРТ',
+  'апреля': 'АПРЕЛЬ', 'мая': 'МАЙ', 'июня': 'ИЮНЬ',
+  'июля': 'ИЮЛЬ', 'августа': 'АВГУСТ', 'сентября': 'СЕНТЯБРЬ',
+  'октября': 'ОКТЯБРЬ', 'ноября': 'НОЯБРЬ', 'декабря': 'ДЕКАБРЬ'
+};
+
+const MONTH_NUM: Record<string, string> = {
+  'января': '01', 'февраля': '02', 'марта': '03', 'апреля': '04',
+  'мая': '05', 'июня': '06', 'июля': '07', 'августа': '08',
+  'сентября': '09', 'октября': '10', 'ноября': '11', 'декабря': '12'
+};
+
 function getMonth(date: string): string {
   const parts = date.trim().split(' ');
   return parts.length >= 2 ? parts[1] : date;
@@ -45,7 +58,7 @@ export default function Featured() {
           {groups.map(({ month, items }) => (
             <div key={month}>
               <div className="flex items-center gap-4 mb-4">
-                <span className="text-neutral-500 uppercase tracking-[0.3em] text-xs">{month}</span>
+                <span className="text-brand uppercase tracking-[0.3em] text-xs font-bold">{MONTH_NAMES[month] || month.toUpperCase()}</span>
                 <div className="flex-1 h-px bg-neutral-800" />
               </div>
               <div className="flex flex-col divide-y divide-neutral-800">
@@ -58,7 +71,7 @@ export default function Featured() {
                       <div className="text-center min-w-[56px]">
                         <div className="text-2xl font-bold leading-tight">{concert.date.split(' ')[0]}</div>
                         <div className="text-neutral-500 text-xs uppercase tracking-wide">
-                          {concert.day}{concert.time ? ` · ${concert.time}` : ''}
+                          {MONTH_NUM[getMonth(concert.date)] || ''}{concert.day ? ` · ${concert.day}` : ''}{concert.time ? ` · ${concert.time}` : ''}
                         </div>
                       </div>
                       <div>
