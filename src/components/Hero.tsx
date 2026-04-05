@@ -1,5 +1,6 @@
 import { useScroll, useTransform, motion } from "framer-motion";
 import { useRef } from "react";
+import { useSiteData } from "@/hooks/useSiteData";
 
 export default function Hero() {
   const container = useRef<HTMLDivElement>(null);
@@ -9,6 +10,9 @@ export default function Hero() {
   });
   const y = useTransform(scrollYProgress, [0, 1], ["0vh", "50vh"]);
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+
+  const { data } = useSiteData();
+  const s = data?.settings;
 
   return (
     <div
@@ -30,7 +34,7 @@ export default function Hero() {
 
       <motion.div style={{ opacity }} className="relative z-20 text-center text-white px-6">
         <p className="text-brand uppercase tracking-[0.4em] text-sm mb-4 font-light">
-          Официальный сайт
+          {s?.hero_label ?? 'Официальный сайт'}
         </p>
         <h1
           className="text-7xl md:text-9xl lg:text-[12rem] font-bold leading-none mb-6"
@@ -40,10 +44,10 @@ export default function Hero() {
             textIndent: "0.6em",
           }}
         >
-          BATRAI
+          {s?.hero_title ?? 'BATRAI'}
         </h1>
         <p className="text-lg md:text-xl max-w-xl mx-auto opacity-80 font-light leading-relaxed">
-          Музыка, которая останется с тобой навсегда
+          {s?.hero_subtitle ?? 'Музыка, которая останется с тобой навсегда'}
         </p>
         <a
           href="#concerts"

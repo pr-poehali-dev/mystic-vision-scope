@@ -1,4 +1,9 @@
+import { useSiteData } from "@/hooks/useSiteData";
+
 export default function Footer() {
+  const { data } = useSiteData();
+  const s = data?.settings;
+
   return (
     <div
       id="music"
@@ -11,85 +16,29 @@ export default function Footer() {
             <div className="flex shrink-0 gap-8 sm:gap-12 lg:gap-20">
               <div className="flex flex-col gap-1 sm:gap-2">
                 <h3 className="mb-1 sm:mb-2 uppercase text-brand text-xs sm:text-sm tracking-widest">Слушать</h3>
-                <a
-                  href="https://vk.com/artist/batrai"
-                  className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base"
-                >
-                  VK Музыка
-                </a>
-                <a
-                  href="https://music.yandex.ru/artist/6389055?utm_source=web&utm_medium=copy_link"
-                  className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base"
-                >
-                  Яндекс Музыка
-                </a>
-                <a
-                  href="https://open.spotify.com/artist/5JmDBqUuXToPsL662cAAd0"
-                  className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base"
-                >
-                  Spotify
-                </a>
-                <a
-                  href="https://music.apple.com/ru/artist/batrai/1441773166"
-                  className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base"
-                >
-                  Apple Music
-                </a>
-                <a
-                  href="https://music.youtube.com/channel/UC2_xpEZy3zX3TYyHv7fJbxw"
-                  className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base"
-                >
-                  YouTube Music
-                </a>
+                <a href={s?.music_vk ?? 'https://vk.com/artist/batrai'} target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base">VK Музыка</a>
+                <a href={s?.music_yandex ?? 'https://music.yandex.ru/artist/6389055'} target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base">Яндекс Музыка</a>
+                <a href={s?.music_spotify ?? 'https://open.spotify.com/artist/5JmDBqUuXToPsL662cAAd0'} target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base">Spotify</a>
+                <a href={s?.music_apple ?? 'https://music.apple.com/ru/artist/batrai/1441773166'} target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base">Apple Music</a>
+                <a href={s?.music_youtube ?? 'https://music.youtube.com/channel/UC2_xpEZy3zX3TYyHv7fJbxw'} target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base">YouTube Music</a>
               </div>
               <div className="flex flex-col gap-1 sm:gap-2">
                 <h3 className="mb-1 sm:mb-2 uppercase text-brand text-xs sm:text-sm tracking-widest">Соцсети</h3>
-                <a
-                  href="https://www.instagram.com/batraiofficial"
-                  className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base"
-                >
-                  Instagram
-                </a>
-                <a
-                  href="https://vk.ru/batraiofficial"
-                  className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base"
-                >
-                  VK
-                </a>
-                <a
-                  href="https://youtube.com/@batraiofficial"
-                  className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base"
-                >
-                  YouTube
-                </a>
-                <a
-                  href="https://www.tiktok.com/@batrai.me"
-                  className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base"
-                >
-                  TikTok
-                </a>
-                <a
-                  href="https://t.me/batraiofficial"
-                  className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base"
-                >
-                  Telegram
-                </a>
+                <a href={s?.social_instagram ?? 'https://www.instagram.com/batraiofficial'} target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base">Instagram</a>
+                <a href={s?.social_vk ?? 'https://vk.ru/batraiofficial'} target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base">VK</a>
+                <a href={s?.social_youtube ?? 'https://youtube.com/@batraiofficial'} target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base">YouTube</a>
+                <a href={s?.social_tiktok ?? 'https://www.tiktok.com/@batrai.me'} target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base">TikTok</a>
+                <a href={s?.social_telegram ?? 'https://t.me/batraiofficial'} target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base">Telegram</a>
               </div>
               <div className="flex flex-col gap-1 sm:gap-2">
                 <h3 className="mb-1 sm:mb-2 uppercase text-brand text-xs sm:text-sm tracking-widest">Контакты</h3>
                 <p className="text-neutral-400 text-xs mb-1">Организация концертов / Сотрудничество</p>
-                <a
-                  href="tel:+79529875555"
-                  className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base"
-                >
-                  +7 (952) 987-55-55
+                <a href={`tel:${(s?.contact_phone ?? '+79529875555').replace(/\D/g, '').replace(/^/, '+')}`} className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base">
+                  {s?.contact_phone ?? '+7 (952) 987-55-55'}
                 </a>
-                <p className="text-neutral-500 text-xs">Шамиль</p>
-                <a
-                  href="mailto:batraiofficial@gmail.com"
-                  className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base mt-1"
-                >
-                  batraiofficial@gmail.com
+                <p className="text-neutral-500 text-xs">{s?.contact_name ?? 'Шамиль'}</p>
+                <a href={`mailto:${s?.contact_email ?? 'batraiofficial@gmail.com'}`} className="text-white hover:text-brand transition-colors duration-300 text-sm sm:text-base mt-1">
+                  {s?.contact_email ?? 'batraiofficial@gmail.com'}
                 </a>
               </div>
             </div>

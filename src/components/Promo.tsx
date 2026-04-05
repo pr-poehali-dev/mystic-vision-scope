@@ -1,5 +1,6 @@
 import { useScroll, useTransform, motion } from "framer-motion";
 import { useRef } from "react";
+import { useSiteData } from "@/hooks/useSiteData";
 
 export default function Promo() {
   const container = useRef<HTMLDivElement>(null);
@@ -8,6 +9,9 @@ export default function Promo() {
     offset: ["start end", "end start"],
   });
   const y = useTransform(scrollYProgress, [0, 1], ["-5vh", "5vh"]);
+
+  const { data } = useSiteData();
+  const s = data?.settings;
 
   return (
     <div
@@ -41,13 +45,13 @@ export default function Promo() {
             className="text-5xl lg:text-7xl font-bold leading-none mb-8 text-[#ffffff]"
             style={{ fontFamily: "'DIN Condensed', 'Barlow Condensed', sans-serif", letterSpacing: "0.6em" }}
           >
-            BATRAI
+            {s?.about_title ?? 'BATRAI'}
           </h2>
           <p className="text-neutral-300 text-lg lg:text-xl leading-relaxed max-w-md font-light mb-4">
-            Голос, рождённый из тишины. Музыка, созданная для тех, кто умеет слышать больше, чем звук.
+            {s?.about_text1 ?? 'Голос, рождённый из тишины. Музыка, созданная для тех, кто умеет слышать больше, чем звук.'}
           </p>
           <p className="text-neutral-500 text-sm lg:text-base leading-relaxed max-w-md mb-10">
-            Живые выступления, честные тексты и атмосфера, которая остаётся после концерта. Batrai — это не просто музыка, это ощущение.
+            {s?.about_text2 ?? 'Живые выступления, честные тексты и атмосфера, которая остаётся после концерта. Batrai — это не просто музыка, это ощущение.'}
           </p>
           <a
             href="#concerts"
