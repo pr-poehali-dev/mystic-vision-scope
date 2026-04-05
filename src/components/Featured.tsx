@@ -97,7 +97,7 @@ export default function Featured() {
                           <div className="w-px bg-neutral-700 flex-shrink-0" />
                           <div>
                             <div className="text-2xl font-bold leading-tight group-hover:text-brand transition-colors duration-300">{concert.city}</div>
-                            <div className="text-neutral-500 text-xs mt-1">{concert.venue}{concert.address ? ` · ${concert.address}` : ''}</div>
+                            <div className="text-neutral-400 text-sm mt-1">{concert.venue}{concert.address ? <span className="text-neutral-600"> · {concert.address}</span> : ''}</div>
                           </div>
                         </div>
                       </div>
