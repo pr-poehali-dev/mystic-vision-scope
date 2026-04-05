@@ -35,6 +35,8 @@ export interface SiteSettings {
   music_apple: string;
   music_youtube: string;
   concerts_month: string;
+  concerts_title: string;
+  concerts_description: string;
   [key: string]: string;
 }
 

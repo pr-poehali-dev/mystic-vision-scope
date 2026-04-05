@@ -243,6 +243,12 @@ export default function Admin() {
               <Field label="Telegram" value={settings.social_telegram || ''} onChange={v => setSettings(s => ({ ...s, social_telegram: v }))} />
             </SettingsSection>
 
+            <SettingsSection title="Раздел концертов">
+              <Field label="Подпись (над заголовком)" value={settings.concerts_month || ''} onChange={v => setSettings(s => ({ ...s, concerts_month: v }))} />
+              <Field label="Заголовок" value={settings.concerts_title || ''} onChange={v => setSettings(s => ({ ...s, concerts_title: v }))} />
+              <Field label="Описание" value={settings.concerts_description || ''} onChange={v => setSettings(s => ({ ...s, concerts_description: v }))} textarea />
+            </SettingsSection>
+
             <SettingsSection title="Музыкальные платформы">
               <Field label="VK Музыка" value={settings.music_vk || ''} onChange={v => setSettings(s => ({ ...s, music_vk: v }))} />
               <Field label="Яндекс Музыка" value={settings.music_yandex || ''} onChange={v => setSettings(s => ({ ...s, music_yandex: v }))} />
