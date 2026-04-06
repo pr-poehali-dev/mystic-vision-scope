@@ -1,10 +1,14 @@
 import json
 import os
+import time
 import psycopg2
 import boto3
 
 SCHEMA = os.environ.get('MAIN_DB_SCHEMA', 't_p78741689_mystic_vision_scope')
 ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', '')
+
+_cache = {'data': None, 'ts': 0}
+CACHE_TTL = 60
 
 CORS_HEADERS = {
     'Access-Control-Allow-Origin': '*',
@@ -87,8 +91,11 @@ def handler(event: dict, context) -> dict:
         cdn_url = f"https://cdn.poehali.dev/projects/{key_id}/bucket/site-data.json"
         return {'statusCode': 200, 'headers': CORS_HEADERS, 'body': json.dumps({'cdnUrl': cdn_url})}
 
-    # action=data — получить все данные (публичный)
+    # action=data — получить все данные (публичный, с кэшем)
     if action == 'data' and method == 'GET':
+        now = time.time()
+        if _cache['data'] and now - _cache['ts'] < CACHE_TTL:
+            return {'statusCode': 200, 'headers': CORS_HEADERS, 'body': json.dumps(_cache['data'])}
         conn = get_conn()
         cur = conn.cursor()
         cur.execute(f'SELECT id, date_text, day_text, city, venue, ticket_url, sold, sort_order, time_text, address, phone FROM {SCHEMA}.concerts ORDER BY sort_order')
@@ -100,9 +107,10 @@ def handler(event: dict, context) -> dict:
         cur.execute(f'SELECT key, value FROM {SCHEMA}.site_settings')
         settings_rows = cur.fetchall()
         settings = {r[0]: r[1] for r in settings_rows}
-        publish_static(conn)
         conn.close()
-        return {'statusCode': 200, 'headers': CORS_HEADERS, 'body': json.dumps({'concerts': concerts, 'settings': settings})}
+        _cache['data'] = {'concerts': concerts, 'settings': settings}
+        _cache['ts'] = now
+        return {'statusCode': 200, 'headers': CORS_HEADERS, 'body': json.dumps(_cache['data'])}
 
     # action=publish POST — вручную опубликовать статику на S3
     if action == 'publish' and method == 'POST':
