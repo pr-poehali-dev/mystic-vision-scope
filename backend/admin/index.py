@@ -38,12 +38,27 @@ def publish_static(conn):
         aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],
         aws_secret_access_key=os.environ['AWS_SECRET_ACCESS_KEY'],
     )
+    try:
+        s3.put_bucket_cors(
+            Bucket='files',
+            CORSConfiguration={
+                'CORSRules': [{
+                    'AllowedHeaders': ['*'],
+                    'AllowedMethods': ['GET'],
+                    'AllowedOrigins': ['*'],
+                    'MaxAgeSeconds': 3600,
+                }]
+            }
+        )
+    except Exception:
+        pass
     s3.put_object(
         Bucket='files',
         Key='site-data.json',
         Body=data.encode('utf-8'),
         ContentType='application/json',
         ACL='public-read',
+        CacheControl='public, max-age=60',
     )
 
 def handler(event: dict, context) -> dict:
