@@ -47,14 +47,29 @@ export interface SiteData {
   settings: SiteSettings;
 }
 
+async function fetchConfig(): Promise<string> {
+  const res = await fetch(`${ADMIN_URL}?action=config`);
+  const data = await res.json();
+  return data.cdnUrl as string;
+}
+
+async function fetchSiteData(): Promise<SiteData> {
+  try {
+    const cdnUrl = await fetchConfig();
+    const res = await fetch(`${cdnUrl}?_=${Math.floor(Date.now() / 60000)}`);
+    if (!res.ok) throw new Error('CDN not ready');
+    return res.json();
+  } catch {
+    const res = await fetch(`${ADMIN_URL}?action=data`);
+    return res.json();
+  }
+}
+
 export function useSiteData() {
   return useQuery<SiteData>({
     queryKey: ['site-data'],
-    queryFn: async () => {
-      const res = await fetch(`${ADMIN_URL}?action=data`);
-      return res.json();
-    },
-    staleTime: 1000 * 60 * 5,
+    queryFn: fetchSiteData,
+    staleTime: 1000 * 60 * 10,
   });
 }
 

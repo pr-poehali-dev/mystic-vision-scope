@@ -7,6 +7,22 @@
       "expectedStatus": 401,
       "expectedBody": {"error": "Unauthorized"},
       "bodyMatcher": "partial"
+    },
+    {
+      "name": "Get config (CDN URL)",
+      "method": "GET",
+      "path": "/?action=config",
+      "expectedStatus": 200,
+      "expectedBody": {"cdnUrl": "string"},
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Publish static to S3",
+      "method": "POST",
+      "path": "/?action=publish",
+      "expectedStatus": 401,
+      "expectedBody": {"error": "Unauthorized"},
+      "bodyMatcher": "partial"
     }
   ]
 }
