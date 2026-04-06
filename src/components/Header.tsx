@@ -26,6 +26,12 @@ export default function Header({ className }: HeaderProps) {
           >
             Музыка
           </a>
+          <a
+            href="/booking"
+            className="text-white hover:text-brand transition-colors duration-300 uppercase text-sm tracking-wide"
+          >
+            Заявка
+          </a>
         </nav>
       </div>
     </header>
