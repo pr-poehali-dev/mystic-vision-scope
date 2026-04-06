@@ -85,6 +85,7 @@ def handler(event: dict, context) -> dict:
         cur.execute(f'SELECT key, value FROM {SCHEMA}.site_settings')
         settings_rows = cur.fetchall()
         settings = {r[0]: r[1] for r in settings_rows}
+        publish_static(conn)
         conn.close()
         return {'statusCode': 200, 'headers': CORS_HEADERS, 'body': json.dumps({'concerts': concerts, 'settings': settings})}
 

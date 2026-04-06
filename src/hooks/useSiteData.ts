@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 const ADMIN_URL = 'https://functions.poehali.dev/2d252e78-0412-4288-8710-b17897516b1c';
+const CDN_URL = 'https://cdn.poehali.dev/projects/bd77bfb9-eb01-4e5f-b885-f17ac1c02d19/bucket/site-data.json';
 
 export interface Concert {
   id: number;
@@ -47,16 +48,9 @@ export interface SiteData {
   settings: SiteSettings;
 }
 
-async function fetchConfig(): Promise<string> {
-  const res = await fetch(`${ADMIN_URL}?action=config`);
-  const data = await res.json();
-  return data.cdnUrl as string;
-}
-
 async function fetchSiteData(): Promise<SiteData> {
   try {
-    const cdnUrl = await fetchConfig();
-    const res = await fetch(`${cdnUrl}?_=${Math.floor(Date.now() / 60000)}`);
+    const res = await fetch(`${CDN_URL}?_=${Math.floor(Date.now() / 60000)}`);
     if (!res.ok) throw new Error('CDN not ready');
     return res.json();
   } catch {
