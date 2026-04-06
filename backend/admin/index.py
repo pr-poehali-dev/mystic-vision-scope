@@ -1,14 +1,10 @@
 import json
 import os
-import time
 import psycopg2
 import boto3
 
 SCHEMA = os.environ.get('MAIN_DB_SCHEMA', 't_p78741689_mystic_vision_scope')
 ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', '')
-
-_cache = {'data': None, 'ts': 0}
-CACHE_TTL = 60
 
 CORS_HEADERS = {
     'Access-Control-Allow-Origin': '*',
@@ -19,6 +15,14 @@ CORS_HEADERS = {
 
 def get_conn():
     return psycopg2.connect(os.environ['DATABASE_URL'])
+
+def get_s3():
+    return boto3.client(
+        's3',
+        endpoint_url='https://bucket.poehali.dev',
+        aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],
+        aws_secret_access_key=os.environ['AWS_SECRET_ACCESS_KEY'],
+    )
 
 def check_auth(event):
     token = event.get('headers', {}).get('X-Admin-Token', '')
@@ -36,33 +40,13 @@ def publish_static(conn):
     settings_rows = cur.fetchall()
     settings = {r[0]: r[1] for r in settings_rows}
     data = json.dumps({'concerts': concerts, 'settings': settings}, ensure_ascii=False)
-    s3 = boto3.client(
-        's3',
-        endpoint_url='https://bucket.poehali.dev',
-        aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],
-        aws_secret_access_key=os.environ['AWS_SECRET_ACCESS_KEY'],
-    )
-    try:
-        s3.put_bucket_cors(
-            Bucket='files',
-            CORSConfiguration={
-                'CORSRules': [{
-                    'AllowedHeaders': ['*'],
-                    'AllowedMethods': ['GET'],
-                    'AllowedOrigins': ['*'],
-                    'MaxAgeSeconds': 3600,
-                }]
-            }
-        )
-    except Exception:
-        pass
+    s3 = get_s3()
     s3.put_object(
         Bucket='files',
         Key='site-data.json',
         Body=data.encode('utf-8'),
         ContentType='application/json',
         ACL='public-read',
-        CacheControl='public, max-age=60',
     )
 
 def handler(event: dict, context) -> dict:
@@ -85,32 +69,12 @@ def handler(event: dict, context) -> dict:
             return {'statusCode': 200, 'headers': CORS_HEADERS, 'body': json.dumps({'ok': True})}
         return {'statusCode': 401, 'headers': CORS_HEADERS, 'body': json.dumps({'ok': False, 'error': 'Неверный пароль'})}
 
-    # action=config — получить публичный CDN URL статики (публичный)
-    if action == 'config' and method == 'GET':
-        key_id = os.environ['AWS_ACCESS_KEY_ID']
-        cdn_url = f"https://cdn.poehali.dev/projects/{key_id}/bucket/site-data.json"
-        return {'statusCode': 200, 'headers': CORS_HEADERS, 'body': json.dumps({'cdnUrl': cdn_url})}
-
-    # action=data — получить все данные (публичный, с кэшем)
+    # action=data — читаем готовый JSON с S3 (без обращения к БД)
     if action == 'data' and method == 'GET':
-        now = time.time()
-        if _cache['data'] and now - _cache['ts'] < CACHE_TTL:
-            return {'statusCode': 200, 'headers': CORS_HEADERS, 'body': json.dumps(_cache['data'])}
-        conn = get_conn()
-        cur = conn.cursor()
-        cur.execute(f'SELECT id, date_text, day_text, city, venue, ticket_url, sold, sort_order, time_text, address, phone FROM {SCHEMA}.concerts ORDER BY sort_order')
-        rows = cur.fetchall()
-        concerts = [
-            {'id': r[0], 'date': r[1], 'day': r[2], 'city': r[3], 'venue': r[4], 'ticketUrl': r[5], 'sold': r[6], 'sort_order': r[7], 'time': r[8], 'address': r[9], 'phone': r[10]}
-            for r in rows
-        ]
-        cur.execute(f'SELECT key, value FROM {SCHEMA}.site_settings')
-        settings_rows = cur.fetchall()
-        settings = {r[0]: r[1] for r in settings_rows}
-        conn.close()
-        _cache['data'] = {'concerts': concerts, 'settings': settings}
-        _cache['ts'] = now
-        return {'statusCode': 200, 'headers': CORS_HEADERS, 'body': json.dumps(_cache['data'])}
+        s3 = get_s3()
+        obj = s3.get_object(Bucket='files', Key='site-data.json')
+        data = obj['Body'].read().decode('utf-8')
+        return {'statusCode': 200, 'headers': CORS_HEADERS, 'body': data}
 
     # action=publish POST — вручную опубликовать статику на S3
     if action == 'publish' and method == 'POST':

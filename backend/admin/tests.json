@@ -9,11 +9,11 @@
       "bodyMatcher": "partial"
     },
     {
-      "name": "Get config (CDN URL)",
+      "name": "Get data from S3",
       "method": "GET",
-      "path": "/?action=config",
+      "path": "/?action=data",
       "expectedStatus": 200,
-      "expectedBody": {"cdnUrl": "string"},
+      "expectedBody": {"settings": {}},
       "bodyMatcher": "partial"
     },
     {
