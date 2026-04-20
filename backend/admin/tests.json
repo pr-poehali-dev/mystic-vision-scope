@@ -23,6 +23,14 @@
       "expectedStatus": 401,
       "expectedBody": {"error": "Unauthorized"},
       "bodyMatcher": "partial"
+    },
+    {
+      "name": "Reorder concerts — unauthorized",
+      "method": "POST",
+      "path": "/?action=reorder",
+      "expectedStatus": 401,
+      "expectedBody": {"error": "Unauthorized"},
+      "bodyMatcher": "partial"
     }
   ]
 }

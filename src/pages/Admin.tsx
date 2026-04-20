@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { ADMIN_URL, Concert, SiteSettings } from '@/hooks/useSiteData';
 import Icon from '@/components/ui/icon';
@@ -17,6 +17,8 @@ export default function Admin() {
   const [saveMsg, setSaveMsg] = useState('');
   const [editingConcert, setEditingConcert] = useState<Concert | null>(null);
   const [newConcert, setNewConcert] = useState(false);
+  const [reordering, setReordering] = useState(false);
+  const dragIndex = useRef<number | null>(null);
   const queryClient = useQueryClient();
 
   const apiFetch = (action: string, options: RequestInit = {}, extra = '') =>
@@ -102,6 +104,34 @@ export default function Admin() {
     queryClient.invalidateQueries({ queryKey: ['site-data'] });
   }
 
+  async function reorderConcerts(ordered: Concert[]) {
+    setReordering(true);
+    const ids = ordered.map(c => c.id);
+    await apiFetch('reorder', { method: 'POST', body: JSON.stringify({ ids }) });
+    await loadData();
+    queryClient.invalidateQueries({ queryKey: ['site-data'] });
+    setReordering(false);
+  }
+
+  function handleDragStart(index: number) {
+    dragIndex.current = index;
+  }
+
+  function handleDragOver(e: React.DragEvent, index: number) {
+    e.preventDefault();
+    if (dragIndex.current === null || dragIndex.current === index) return;
+    const updated = [...concerts];
+    const [moved] = updated.splice(dragIndex.current, 1);
+    updated.splice(index, 0, moved);
+    dragIndex.current = index;
+    setConcerts(updated);
+  }
+
+  function handleDragEnd() {
+    dragIndex.current = null;
+    reorderConcerts(concerts);
+  }
+
   if (!authed) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center px-4">
@@ -179,9 +209,16 @@ export default function Admin() {
               />
             )}
 
+            {reordering && <p className="text-neutral-500 text-xs mb-2">Сохранение порядка...</p>}
             <div className="space-y-2">
-              {concerts.map(c => (
-                <div key={c.id}>
+              {concerts.map((c, index) => (
+                <div
+                  key={c.id}
+                  draggable={!editingConcert}
+                  onDragStart={() => handleDragStart(index)}
+                  onDragOver={e => handleDragOver(e, index)}
+                  onDragEnd={handleDragEnd}
+                >
                   {editingConcert?.id === c.id ? (
                     <ConcertForm
                       initial={editingConcert}
@@ -190,8 +227,9 @@ export default function Admin() {
                       saving={saving}
                     />
                   ) : (
-                    <div className="flex items-center justify-between bg-neutral-900 px-4 py-3 gap-4">
-                      <div className="flex items-center gap-4 min-w-0">
+                    <div className="flex items-center justify-between bg-neutral-900 px-4 py-3 gap-4 cursor-grab active:cursor-grabbing select-none">
+                      <div className="flex items-center gap-3 min-w-0">
+                        <Icon name="GripVertical" size={16} className="text-neutral-600 flex-shrink-0" />
                         <span className="text-brand text-sm font-bold whitespace-nowrap">{c.date} {c.day}{c.time ? ` · ${c.time}` : ''}</span>
                         <div className="min-w-0">
                           <div className="font-medium truncate">{c.city}</div>
@@ -200,10 +238,10 @@ export default function Admin() {
                         {c.sold && <span className="text-xs border border-neutral-600 text-neutral-500 px-2 py-0.5 whitespace-nowrap">Распродано</span>}
                       </div>
                       <div className="flex items-center gap-2 flex-shrink-0">
-                        <button onClick={() => setEditingConcert(c)} className="text-neutral-400 hover:text-white p-1">
+                        <button onClick={() => setEditingConcert(c)} className="text-neutral-400 hover:text-white p-1 cursor-pointer">
                           <Icon name="Pencil" size={16} />
                         </button>
-                        <button onClick={() => deleteConcert(c.id)} className="text-neutral-400 hover:text-brand p-1">
+                        <button onClick={() => deleteConcert(c.id)} className="text-neutral-400 hover:text-brand p-1 cursor-pointer">
                           <Icon name="Trash2" size={16} />
                         </button>
                       </div>

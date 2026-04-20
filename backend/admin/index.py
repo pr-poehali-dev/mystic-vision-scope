@@ -128,6 +128,18 @@ def handler(event: dict, context) -> dict:
         conn.close()
         return {'statusCode': 200, 'headers': CORS_HEADERS, 'body': json.dumps({'ok': True})}
 
+    # action=reorder POST — изменить порядок концертов
+    if action == 'reorder' and method == 'POST':
+        ids = body.get('ids', [])
+        conn = get_conn()
+        cur = conn.cursor()
+        for i, concert_id in enumerate(ids):
+            cur.execute(f'UPDATE {SCHEMA}.concerts SET sort_order=%s WHERE id=%s', (i + 1, concert_id))
+        conn.commit()
+        publish_static(conn)
+        conn.close()
+        return {'statusCode': 200, 'headers': CORS_HEADERS, 'body': json.dumps({'ok': True})}
+
     # action=settings PUT — обновить настройки
     if action == 'settings' and method == 'PUT':
         conn = get_conn()
