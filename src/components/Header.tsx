@@ -4,7 +4,6 @@ import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/s
 import Icon from "@/components/ui/icon";
 
 const NAV_LINKS = [
-  { href: "#about", label: "О себе" },
   { href: "#concerts", label: "Концерты" },
   { href: "#music", label: "Музыка" },
   { href: "/booking", label: "Заявка" },

@@ -51,13 +51,27 @@ export default function Featured() {
   const total = concerts.length;
 
   return (
-    <div id="concerts" className="relative bg-black text-white px-6 py-24 lg:py-36 overflow-hidden">
+    <div id="concerts" className="relative bg-black text-white px-6 pt-32 pb-24 lg:pt-44 lg:pb-36 overflow-hidden">
       <div
         className="pointer-events-none absolute -top-40 right-0 w-[600px] h-[600px] rounded-full opacity-20 blur-[120px]"
         style={{ background: "radial-gradient(circle, #e00000 0%, transparent 70%)" }}
       />
 
       <div className="relative max-w-5xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-center mb-10"
+        >
+          <div
+            className="inline-block text-white text-sm font-bold uppercase"
+            style={{ fontFamily: "'DIN Condensed', 'Barlow Condensed', sans-serif", letterSpacing: "0.6em" }}
+          >
+            BATRAI
+          </div>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
