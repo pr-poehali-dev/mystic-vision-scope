@@ -188,8 +188,7 @@ export default function Featured() {
                       <div className="flex items-stretch gap-2 sm:gap-4 min-w-0">
                         <div className="w-14 sm:w-28 flex-shrink-0">
                           <div className="text-sm sm:text-2xl font-bold leading-tight whitespace-nowrap">
-                            <span className="sm:hidden">{shortDate(concert.date)}</span>
-                            <span className="hidden sm:inline">{concert.date}</span>
+                            {shortDate(concert.date)}
                           </div>
                           <div className="hidden sm:block text-neutral-500 text-xs uppercase tracking-wide mt-1">{concert.day}{concert.time ? ` · ${concert.time}` : ''}</div>
                         </div>
