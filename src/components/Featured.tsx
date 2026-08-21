@@ -65,6 +65,12 @@ function getMonth(date: string): string {
   return parts.length >= 2 ? parts[1] : date;
 }
 
+function shortDate(date: string): string {
+  const parts = date.trim().split(' ');
+  if (parts.length < 2) return date;
+  return `${parts[0]} ${parts[1].slice(0, 3)}`;
+}
+
 function isPast(date: string): boolean {
   const parts = date.trim().split(' ');
   if (parts.length < 2) return false;
@@ -163,47 +169,52 @@ export default function Featured() {
                 {items.map((concert, i) => (
                   <div
                     key={concert.id ?? i}
-                    className="flex flex-col sm:flex-row sm:items-center justify-between py-6 gap-4 group px-3 -mx-3 hover:bg-white/[0.03]"
+                    className="flex items-center justify-between py-3 sm:py-6 gap-2 sm:gap-4 group px-3 -mx-3 hover:bg-white/[0.03]"
                   >
-                    <div className="flex items-center gap-6 lg:gap-10">
-                      <div className="flex items-stretch gap-4">
-                        <div className="w-28 flex-shrink-0">
-                          <div className="text-2xl font-bold leading-tight">{concert.date}</div>
-                          <div className="text-neutral-500 text-xs uppercase tracking-wide mt-1">{concert.day}{concert.time ? ` · ${concert.time}` : ''}</div>
+                    <div className="flex items-center gap-3 sm:gap-6 lg:gap-10 min-w-0">
+                      <div className="flex items-stretch gap-2 sm:gap-4 min-w-0">
+                        <div className="w-14 sm:w-28 flex-shrink-0">
+                          <div className="text-sm sm:text-2xl font-bold leading-tight whitespace-nowrap">
+                            <span className="sm:hidden">{shortDate(concert.date)}</span>
+                            <span className="hidden sm:inline">{concert.date}</span>
+                          </div>
+                          <div className="hidden sm:block text-neutral-500 text-xs uppercase tracking-wide mt-1">{concert.day}{concert.time ? ` · ${concert.time}` : ''}</div>
                         </div>
                         <div className="w-px bg-gradient-to-b from-transparent via-white/20 to-transparent flex-shrink-0" />
-                        <div>
-                          <div className="text-2xl font-bold leading-tight group-hover:text-brand">{concert.city}</div>
-                          <div className="text-neutral-400 text-sm mt-1">{concert.venue}{concert.address ? <span className="text-neutral-600"> · {concert.address}</span> : ''}</div>
+                        <div className="min-w-0">
+                          <div className="text-sm sm:text-2xl font-bold leading-tight group-hover:text-brand truncate">{concert.city}</div>
+                          <div className="hidden sm:block text-neutral-400 text-sm mt-1">{concert.venue}{concert.address ? <span className="text-neutral-600"> · {concert.address}</span> : ''}</div>
                         </div>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-2 flex-shrink-0">
+                    <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
                       {concert.phone && (
                         <a
                           href={`tel:${concert.phone}`}
-                          className="border border-white/15 text-neutral-400 p-2.5 hover:border-white/40 hover:text-white"
+                          className="hidden sm:inline-flex border border-white/15 text-neutral-400 p-2.5 hover:border-white/40 hover:text-white"
                           title={concert.phone}
                         >
                           <Icon name="Phone" size={14} />
                         </a>
                       )}
                       {concert.sold ? (
-                        <span className="text-neutral-600 uppercase text-xs tracking-widest border border-white/10 px-5 py-2.5">
-                          Распродано
+                        <span className="text-neutral-600 uppercase text-[10px] sm:text-xs tracking-widest border border-white/10 px-2.5 py-1.5 sm:px-5 sm:py-2.5 whitespace-nowrap">
+                          <span className="sm:hidden">Продано</span>
+                          <span className="hidden sm:inline">Распродано</span>
                         </span>
                       ) : concert.ticketUrl ? (
                         <a
                           href={concert.ticketUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="bg-brand text-white px-6 py-2.5 uppercase text-xs tracking-widest hover:bg-white hover:text-black"
+                          className="bg-brand text-white px-2.5 py-1.5 sm:px-6 sm:py-2.5 uppercase text-[10px] sm:text-xs tracking-widest hover:bg-white hover:text-black whitespace-nowrap"
                         >
-                          Купить билет
+                          <span className="sm:hidden">Билет</span>
+                          <span className="hidden sm:inline">Купить билет</span>
                         </a>
                       ) : (
-                        <span className="text-neutral-500 uppercase text-xs tracking-widest border border-white/10 px-6 py-2.5">
+                        <span className="text-neutral-500 uppercase text-[10px] sm:text-xs tracking-widest border border-white/10 px-2.5 py-1.5 sm:px-6 sm:py-2.5 whitespace-nowrap">
                           Скоро
                         </span>
                       )}
