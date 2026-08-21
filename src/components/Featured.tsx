@@ -115,20 +115,6 @@ export default function Featured() {
 
       <div className="relative max-w-5xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-center mb-10"
-        >
-          <div
-            className="inline-block text-white text-sm font-bold uppercase"
-            style={{ fontFamily: "'DIN Condensed', 'Barlow Condensed', sans-serif", letterSpacing: "0.6em" }}
-          >
-            BATRAI
-          </div>
-        </motion.div>
-
-        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
