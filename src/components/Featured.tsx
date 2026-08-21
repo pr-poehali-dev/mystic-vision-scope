@@ -236,6 +236,16 @@ export default function Featured() {
             </div>
           ))}
         </div>
+
+        {data?.settings?.contact_phone && (
+          <a
+            href={`tel:${data.settings.contact_phone.replace(/[^\d+]/g, '')}`}
+            className="sm:hidden mt-8 flex items-center justify-center gap-2 bg-brand text-white py-4 uppercase text-xs tracking-widest"
+          >
+            <Icon name="Phone" size={16} />
+            Связаться с организатором{data.settings.contact_name ? ` (${data.settings.contact_name})` : ''}
+          </a>
+        )}
       </div>
     </div>
   );
