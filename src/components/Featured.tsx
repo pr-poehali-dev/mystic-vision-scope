@@ -237,15 +237,13 @@ export default function Featured() {
           ))}
         </div>
 
-        {data?.settings?.contact_phone && (
-          <a
-            href={`tel:${data.settings.contact_phone.replace(/[^\d+]/g, '')}`}
-            className="sm:hidden mt-8 flex items-center justify-center gap-2 bg-brand text-white py-4 uppercase text-xs tracking-widest"
-          >
-            <Icon name="Phone" size={16} />
-            Связаться с организатором{data.settings.contact_name ? ` (${data.settings.contact_name})` : ''}
-          </a>
-        )}
+        <a
+          href="tel:+79281819424"
+          className="sm:hidden mt-8 flex items-center justify-center gap-2 border border-white/15 text-neutral-400 py-4 uppercase text-xs tracking-widest hover:border-white/40 hover:text-white"
+        >
+          <Icon name="Phone" size={16} />
+          Связаться с организатором (Сергей)
+        </a>
       </div>
     </div>
   );
