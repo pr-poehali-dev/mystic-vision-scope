@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useSiteData } from '@/hooks/useSiteData';
 import type { Concert } from '@/hooks/useSiteData';
 import Icon from '@/components/ui/icon';
@@ -90,7 +91,7 @@ function groupByMonth(concerts: Concert[]): { month: string; items: Concert[] }[
 }
 
 export default function Featured() {
-  const { data } = useSiteData();
+  const { data, isLoading } = useSiteData();
   const [region, setRegion] = useState<string>('all');
 
   const upcoming = (data?.concerts || []).filter(c => !isPast(c.date));
@@ -113,7 +114,12 @@ export default function Featured() {
       />
 
       <div className="relative max-w-5xl mx-auto">
-        <div className="flex items-center justify-between mb-16 gap-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="flex items-center justify-between mb-16 gap-6"
+        >
           <div className="flex items-center gap-3">
             <span className="w-8 h-px bg-brand" />
             <p className="text-brand uppercase tracking-[0.4em] text-xs">{data?.settings?.concerts_month || '2026 Тур'}</p>
@@ -124,10 +130,15 @@ export default function Featured() {
               <div className="text-neutral-500 text-[10px] uppercase tracking-widest">концертов</div>
             </div>
           )}
-        </div>
+        </motion.div>
 
         {regions.length > 1 && (
-          <div className="flex items-center gap-2 flex-wrap mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+            className="flex items-center gap-2 flex-wrap mb-12"
+          >
             <span className="text-neutral-500 text-xs uppercase tracking-[0.2em] mr-2 flex items-center gap-1.5">
               <Icon name="MapPin" size={13} /> Регион:
             </span>
@@ -154,10 +165,10 @@ export default function Featured() {
                 {r}
               </button>
             ))}
-          </div>
+          </motion.div>
         )}
 
-        {groups.length === 0 && (
+        {!isLoading && groups.length === 0 && (
           <div className="border border-white/10 rounded-2xl py-16 text-center bg-white/[0.02]">
             <p className="text-brand uppercase tracking-[0.4em] text-xs mb-3">Скоро</p>
             <p className="text-neutral-400 text-sm">
@@ -166,20 +177,35 @@ export default function Featured() {
           </div>
         )}
 
-        <div
+        <AnimatePresence mode="wait">
+        <motion.div
           key={region}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
           className="space-y-14"
         >
           {groups.map(({ month, items }) => (
             <div key={month}>
-              <div className="flex items-center gap-4 mb-4">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5 }}
+                className="flex items-center gap-4 mb-4"
+              >
                 <span className="text-brand uppercase tracking-[0.3em] text-xs font-bold">{MONTH_NAMES[month] || month.toUpperCase()}</span>
                 <div className="flex-1 h-px bg-gradient-to-r from-white/15 to-transparent" />
-              </div>
+              </motion.div>
               <div className="flex flex-col divide-y divide-white/10">
                 {items.map((concert, i) => (
-                  <div
+                  <motion.div
                     key={concert.id ?? i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-60px" }}
+                    transition={{ duration: 0.5, delay: Math.min(i * 0.05, 0.3) }}
                     className="flex flex-col sm:flex-row sm:items-center justify-between py-6 gap-4 group rounded-xl px-3 -mx-3 transition-colors duration-300 hover:bg-white/[0.03]"
                   >
                     <div className="flex items-center gap-6 lg:gap-10">
@@ -225,12 +251,13 @@ export default function Featured() {
                         </span>
                       )}
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
           ))}
-        </div>
+        </motion.div>
+        </AnimatePresence>
       </div>
     </div>
   );
