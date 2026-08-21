@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useMemo, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useSiteData } from '@/hooks/useSiteData';
 import type { Concert } from '@/hooks/useSiteData';
 import Icon from '@/components/ui/icon';
@@ -14,6 +15,51 @@ const MONTH_NAMES: Record<string, string> = {
   'июля': 'ИЮЛЬ', 'августа': 'АВГУСТ', 'сентября': 'СЕНТЯБРЬ',
   'октября': 'ОКТЯБРЬ', 'ноября': 'НОЯБРЬ', 'декабря': 'ДЕКАБРЬ'
 };
+
+const CITY_TO_REGION: Record<string, string> = {
+  'батайск': 'Ростовская область',
+  'зерноград': 'Ростовская область',
+  'сальск': 'Ростовская область',
+  'семикаракорск': 'Ростовская область',
+  'песчанокопское': 'Ростовская область',
+  'егорлыкская': 'Ростовская область',
+  'краснодар': 'Краснодарский край',
+  'ейск': 'Краснодарский край',
+  'тихорецк': 'Краснодарский край',
+  'выселки': 'Краснодарский край',
+  'гулькевичи': 'Краснодарский край',
+  'усть-лабинск': 'Краснодарский край',
+  'курганинск': 'Краснодарский край',
+  'лабинск': 'Краснодарский край',
+  'кущёвская': 'Краснодарский край',
+  'ленинградская': 'Краснодарский край',
+  'отрадная': 'Краснодарский край',
+  'павловская': 'Краснодарский край',
+  'староминская': 'Краснодарский край',
+  'тбилисская': 'Краснодарский край',
+  'невинномысск': 'Ставропольский край',
+  'георгиевск': 'Ставропольский край',
+  'будённовск': 'Ставропольский край',
+  'буденновск': 'Ставропольский край',
+  'благодарный': 'Ставропольский край',
+  'ипатово': 'Ставропольский край',
+  'рыздвяный': 'Ставропольский край',
+  'пятигорск': 'Ставропольский край',
+  'владикавказ': 'Северная Осетия',
+  'кизляр': 'Дагестан',
+  'майкоп': 'Адыгея',
+  'волгоград': 'Волгоградская область',
+  'санкт-петербург': 'Санкт-Петербург',
+  'москва': 'Москва',
+};
+
+function getRegion(city: string): string {
+  const normalized = city
+    .toLowerCase()
+    .replace(/^[а-я]+\.\s*/i, '')
+    .trim();
+  return CITY_TO_REGION[normalized] || 'Другие регионы';
+}
 
 function getMonth(date: string): string {
   const parts = date.trim().split(' ');
@@ -46,7 +92,17 @@ function groupByMonth(concerts: Concert[]): { month: string; items: Concert[] }[
 
 export default function Featured() {
   const { data } = useSiteData();
-  const concerts = (data?.concerts || []).filter(c => !isPast(c.date));
+  const [region, setRegion] = useState<string>('all');
+
+  const upcoming = (data?.concerts || []).filter(c => !isPast(c.date));
+
+  const regions = useMemo(() => {
+    const set = new Set<string>();
+    upcoming.forEach(c => set.add(getRegion(c.city)));
+    return Array.from(set).sort((a, b) => a.localeCompare(b, 'ru'));
+  }, [upcoming]);
+
+  const concerts = region === 'all' ? upcoming : upcoming.filter(c => getRegion(c.city) === region);
   const groups = groupByMonth(concerts);
   const total = concerts.length;
 
@@ -101,14 +157,61 @@ export default function Featured() {
           </div>
         </motion.div>
 
+        {regions.length > 1 && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.5 }}
+            className="flex items-center gap-2 flex-wrap mb-12"
+          >
+            <span className="text-neutral-500 text-xs uppercase tracking-[0.2em] mr-2 flex items-center gap-1.5">
+              <Icon name="MapPin" size={13} /> Регион:
+            </span>
+            <button
+              onClick={() => setRegion('all')}
+              className={`px-4 py-2 rounded-full text-xs uppercase tracking-wide transition-all duration-300 border ${
+                region === 'all'
+                  ? 'bg-brand border-brand text-white'
+                  : 'border-white/15 text-neutral-400 hover:border-white/40 hover:text-white'
+              }`}
+            >
+              Все регионы
+            </button>
+            {regions.map((r) => (
+              <button
+                key={r}
+                onClick={() => setRegion(r)}
+                className={`px-4 py-2 rounded-full text-xs uppercase tracking-wide transition-all duration-300 border ${
+                  region === r
+                    ? 'bg-brand border-brand text-white'
+                    : 'border-white/15 text-neutral-400 hover:border-white/40 hover:text-white'
+                }`}
+              >
+                {r}
+              </button>
+            ))}
+          </motion.div>
+        )}
+
         {groups.length === 0 && (
           <div className="border border-white/10 rounded-2xl py-16 text-center bg-white/[0.02]">
             <p className="text-brand uppercase tracking-[0.4em] text-xs mb-3">Скоро</p>
-            <p className="text-neutral-400 text-sm">Новые даты концертов будут объявлены</p>
+            <p className="text-neutral-400 text-sm">
+              {region === 'all' ? 'Новые даты концертов будут объявлены' : 'В этом регионе пока нет концертов'}
+            </p>
           </div>
         )}
 
-        <div className="space-y-14">
+        <AnimatePresence mode="wait">
+        <motion.div
+          key={region}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="space-y-14"
+        >
           {groups.map(({ month, items }) => (
             <div key={month}>
               <motion.div
@@ -179,7 +282,8 @@ export default function Featured() {
               </div>
             </div>
           ))}
-        </div>
+        </motion.div>
+        </AnimatePresence>
       </div>
     </div>
   );
