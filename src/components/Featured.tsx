@@ -222,8 +222,7 @@ export default function Featured() {
                           rel="noopener noreferrer"
                           className="bg-brand text-white px-2.5 py-1.5 sm:px-6 sm:py-2.5 uppercase text-[10px] sm:text-xs tracking-widest hover:bg-white hover:text-black whitespace-nowrap"
                         >
-                          <span className="sm:hidden">Билет</span>
-                          <span className="hidden sm:inline">Купить билет</span>
+                          Купить билет
                         </a>
                       ) : (
                         <span className="text-neutral-500 uppercase text-[10px] sm:text-xs tracking-widest border border-white/10 px-2.5 py-1.5 sm:px-6 sm:py-2.5 whitespace-nowrap">
