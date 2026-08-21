@@ -135,7 +135,7 @@ export default function Featured() {
           <div className="flex items-center gap-1 sm:gap-2 flex-nowrap mb-8 sm:mb-12">
             <button
               onClick={() => setRegion('all')}
-              className={`flex-1 sm:flex-initial min-w-0 px-1 py-1.5 sm:px-4 sm:py-2 text-[9px] sm:text-xs uppercase tracking-tight sm:tracking-wide border truncate ${
+              className={`flex-shrink-0 sm:flex-initial px-2 py-1.5 sm:px-4 sm:py-2 text-[9px] sm:text-xs uppercase tracking-tight sm:tracking-wide border ${
                 region === 'all'
                   ? 'bg-brand border-brand text-white'
                   : 'border-white/15 text-neutral-400 hover:border-white/40 hover:text-white'
