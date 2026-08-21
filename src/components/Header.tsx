@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { motion, useScroll } from "framer-motion";
 
 interface HeaderProps {
   className?: string;
@@ -7,7 +6,6 @@ interface HeaderProps {
 
 export default function Header({ className }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
-  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -18,14 +16,10 @@ export default function Header({ className }: HeaderProps) {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 ${
         scrolled ? "bg-black/60 backdrop-blur-xl border-b border-white/10" : "bg-transparent"
       } ${className ?? ""}`}
     >
-      <motion.div
-        style={{ scaleX: scrollYProgress }}
-        className="absolute bottom-0 left-0 right-0 h-px bg-brand origin-left"
-      />
       <div className="flex justify-between items-center px-6 lg:px-10 py-5">
         <a
           href="/"

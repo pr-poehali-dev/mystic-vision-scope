@@ -1,5 +1,4 @@
 import { useMemo, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useSiteData } from '@/hooks/useSiteData';
 import type { Concert } from '@/hooks/useSiteData';
 import Icon from '@/components/ui/icon';
@@ -114,18 +113,13 @@ export default function Featured() {
 
       <div className="relative max-w-5xl mx-auto">
         {regions.length > 1 && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-            className="flex items-center gap-2 flex-wrap mb-12"
-          >
+          <div className="flex items-center gap-2 flex-wrap mb-12">
             <span className="text-neutral-500 text-xs uppercase tracking-[0.2em] mr-2 flex items-center gap-1.5">
               <Icon name="MapPin" size={13} /> Регион:
             </span>
             <button
               onClick={() => setRegion('all')}
-              className={`px-4 py-2 rounded-full text-xs uppercase tracking-wide transition-all duration-300 border ${
+              className={`px-4 py-2 text-xs uppercase tracking-wide border ${
                 region === 'all'
                   ? 'bg-brand border-brand text-white'
                   : 'border-white/15 text-neutral-400 hover:border-white/40 hover:text-white'
@@ -137,7 +131,7 @@ export default function Featured() {
               <button
                 key={r}
                 onClick={() => setRegion(r)}
-                className={`px-4 py-2 rounded-full text-xs uppercase tracking-wide transition-all duration-300 border ${
+                className={`px-4 py-2 text-xs uppercase tracking-wide border ${
                   region === r
                     ? 'bg-brand border-brand text-white'
                     : 'border-white/15 text-neutral-400 hover:border-white/40 hover:text-white'
@@ -146,11 +140,11 @@ export default function Featured() {
                 {r}
               </button>
             ))}
-          </motion.div>
+          </div>
         )}
 
         {!isLoading && groups.length === 0 && (
-          <div className="border border-white/10 rounded-2xl py-16 text-center bg-white/[0.02]">
+          <div className="border border-white/10 py-16 text-center bg-white/[0.02]">
             <p className="text-brand uppercase tracking-[0.4em] text-xs mb-3">Скоро</p>
             <p className="text-neutral-400 text-sm">
               {region === 'all' ? 'Новые даты концертов будут объявлены' : 'В этом регионе пока нет концертов'}
@@ -158,36 +152,18 @@ export default function Featured() {
           </div>
         )}
 
-        <AnimatePresence mode="wait">
-        <motion.div
-          key={region}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="space-y-14"
-        >
+        <div className="space-y-14">
           {groups.map(({ month, items }) => (
             <div key={month}>
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5 }}
-                className="flex items-center gap-4 mb-4"
-              >
+              <div className="flex items-center gap-4 mb-4">
                 <span className="text-brand uppercase tracking-[0.3em] text-xs font-bold">{MONTH_NAMES[month] || month.toUpperCase()}</span>
                 <div className="flex-1 h-px bg-gradient-to-r from-white/15 to-transparent" />
-              </motion.div>
+              </div>
               <div className="flex flex-col divide-y divide-white/10">
                 {items.map((concert, i) => (
-                  <motion.div
+                  <div
                     key={concert.id ?? i}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-60px" }}
-                    transition={{ duration: 0.5, delay: Math.min(i * 0.05, 0.3) }}
-                    className="flex flex-col sm:flex-row sm:items-center justify-between py-6 gap-4 group rounded-xl px-3 -mx-3 transition-colors duration-300 hover:bg-white/[0.03]"
+                    className="flex flex-col sm:flex-row sm:items-center justify-between py-6 gap-4 group px-3 -mx-3 hover:bg-white/[0.03]"
                   >
                     <div className="flex items-center gap-6 lg:gap-10">
                       <div className="flex items-stretch gap-4">
@@ -197,7 +173,7 @@ export default function Featured() {
                         </div>
                         <div className="w-px bg-gradient-to-b from-transparent via-white/20 to-transparent flex-shrink-0" />
                         <div>
-                          <div className="text-2xl font-bold leading-tight group-hover:text-brand transition-colors duration-300">{concert.city}</div>
+                          <div className="text-2xl font-bold leading-tight group-hover:text-brand">{concert.city}</div>
                           <div className="text-neutral-400 text-sm mt-1">{concert.venue}{concert.address ? <span className="text-neutral-600"> · {concert.address}</span> : ''}</div>
                         </div>
                       </div>
@@ -207,14 +183,14 @@ export default function Featured() {
                       {concert.phone && (
                         <a
                           href={`tel:${concert.phone}`}
-                          className="border border-white/15 text-neutral-400 rounded-full p-2.5 hover:border-white/40 hover:text-white transition-all duration-300"
+                          className="border border-white/15 text-neutral-400 p-2.5 hover:border-white/40 hover:text-white"
                           title={concert.phone}
                         >
                           <Icon name="Phone" size={14} />
                         </a>
                       )}
                       {concert.sold ? (
-                        <span className="text-neutral-600 uppercase text-xs tracking-widest border border-white/10 rounded-full px-5 py-2.5">
+                        <span className="text-neutral-600 uppercase text-xs tracking-widest border border-white/10 px-5 py-2.5">
                           Распродано
                         </span>
                       ) : concert.ticketUrl ? (
@@ -222,23 +198,22 @@ export default function Featured() {
                           href={concert.ticketUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="bg-brand text-white px-6 py-2.5 rounded-full uppercase text-xs tracking-widest hover:bg-white hover:text-black transition-all duration-300"
+                          className="bg-brand text-white px-6 py-2.5 uppercase text-xs tracking-widest hover:bg-white hover:text-black"
                         >
                           Купить билет
                         </a>
                       ) : (
-                        <span className="text-neutral-500 uppercase text-xs tracking-widest border border-white/10 rounded-full px-6 py-2.5">
+                        <span className="text-neutral-500 uppercase text-xs tracking-widest border border-white/10 px-6 py-2.5">
                           Скоро
                         </span>
                       )}
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </div>
           ))}
-        </motion.div>
-        </AnimatePresence>
+        </div>
       </div>
     </div>
   );
