@@ -60,6 +60,19 @@ function getRegion(city: string): string {
   return CITY_TO_REGION[normalized] || 'Другие регионы';
 }
 
+const SHORT_REGION_NAMES: Record<string, string> = {
+  'Ростовская область': 'Ростовская',
+  'Краснодарский край': 'Краснодарский',
+  'Ставропольский край': 'Ставропольский',
+  'Северная Осетия': 'Осетия',
+  'Волгоградская область': 'Волгоградская',
+  'Другие регионы': 'Другие',
+};
+
+function shortRegion(region: string): string {
+  return SHORT_REGION_NAMES[region] || region;
+}
+
 function getMonth(date: string): string {
   const parts = date.trim().split(' ');
   return parts.length >= 2 ? parts[1] : date;
@@ -119,28 +132,31 @@ export default function Featured() {
 
       <div className="relative max-w-5xl mx-auto">
         {regions.length > 1 && (
-          <div className="flex items-center gap-1.5 sm:gap-2 flex-nowrap sm:flex-wrap overflow-x-auto sm:overflow-visible mb-8 sm:mb-12 -mx-6 px-6 sm:mx-0 sm:px-0 scrollbar-hide">
+          <div className="flex items-center gap-1 sm:gap-2 flex-nowrap mb-8 sm:mb-12">
             <button
               onClick={() => setRegion('all')}
-              className={`flex-shrink-0 px-3 py-1.5 sm:px-4 sm:py-2 text-[11px] sm:text-xs uppercase tracking-wide border whitespace-nowrap ${
+              className={`flex-1 sm:flex-initial min-w-0 px-1 py-1.5 sm:px-4 sm:py-2 text-[9px] sm:text-xs uppercase tracking-tight sm:tracking-wide border truncate ${
                 region === 'all'
                   ? 'bg-brand border-brand text-white'
                   : 'border-white/15 text-neutral-400 hover:border-white/40 hover:text-white'
               }`}
             >
-              Все регионы
+              <span className="sm:hidden">Все</span>
+              <span className="hidden sm:inline">Все регионы</span>
             </button>
             {regions.map((r) => (
               <button
                 key={r}
                 onClick={() => setRegion(r)}
-                className={`flex-shrink-0 px-3 py-1.5 sm:px-4 sm:py-2 text-[11px] sm:text-xs uppercase tracking-wide border whitespace-nowrap ${
+                title={r}
+                className={`flex-1 sm:flex-initial min-w-0 px-1 py-1.5 sm:px-4 sm:py-2 text-[9px] sm:text-xs uppercase tracking-tight sm:tracking-wide border truncate ${
                   region === r
                     ? 'bg-brand border-brand text-white'
                     : 'border-white/15 text-neutral-400 hover:border-white/40 hover:text-white'
                 }`}
               >
-                {r}
+                <span className="sm:hidden">{shortRegion(r)}</span>
+                <span className="hidden sm:inline">{r}</span>
               </button>
             ))}
           </div>
