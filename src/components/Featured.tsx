@@ -133,28 +133,18 @@ export default function Featured() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-6"
+          className="flex items-center justify-between mb-16 gap-6"
         >
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <span className="w-8 h-px bg-brand" />
-              <p className="text-brand uppercase tracking-[0.4em] text-xs">{data?.settings?.concerts_month || '2026 Тур'}</p>
+          <div className="flex items-center gap-3">
+            <span className="w-8 h-px bg-brand" />
+            <p className="text-brand uppercase tracking-[0.4em] text-xs">{data?.settings?.concerts_month || '2026 Тур'}</p>
+          </div>
+          {total > 0 && (
+            <div className="flex-shrink-0 text-right">
+              <div className="text-4xl font-bold text-brand" style={{ fontFamily: "'DIN Condensed', 'Barlow Condensed', sans-serif" }}>{total}</div>
+              <div className="text-neutral-500 text-[10px] uppercase tracking-widest">концертов</div>
             </div>
-            <h2 className="text-6xl lg:text-8xl font-bold tracking-tight leading-none">
-              {data?.settings?.concerts_title || 'КОНЦЕРТЫ'}
-            </h2>
-          </div>
-          <div className="flex items-center gap-6">
-            <p className="text-neutral-400 max-w-xs leading-relaxed text-sm">
-              {data?.settings?.concerts_description || 'Живые выступления в лучших площадках страны. Почувствуй музыку вживую.'}
-            </p>
-            {total > 0 && (
-              <div className="flex-shrink-0 text-right">
-                <div className="text-4xl font-bold text-brand" style={{ fontFamily: "'DIN Condensed', 'Barlow Condensed', sans-serif" }}>{total}</div>
-                <div className="text-neutral-500 text-[10px] uppercase tracking-widest">концертов</div>
-              </div>
-            )}
-          </div>
+          )}
         </motion.div>
 
         {regions.length > 1 && (
