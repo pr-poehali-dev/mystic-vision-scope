@@ -119,13 +119,10 @@ export default function Featured() {
 
       <div className="relative max-w-5xl mx-auto">
         {regions.length > 1 && (
-          <div className="flex items-center gap-2 flex-wrap mb-12">
-            <span className="text-neutral-500 text-xs uppercase tracking-[0.2em] mr-2 flex items-center gap-1.5">
-              <Icon name="MapPin" size={13} /> Регион:
-            </span>
+          <div className="flex items-center gap-1.5 sm:gap-2 flex-nowrap sm:flex-wrap overflow-x-auto sm:overflow-visible mb-8 sm:mb-12 -mx-6 px-6 sm:mx-0 sm:px-0 scrollbar-hide">
             <button
               onClick={() => setRegion('all')}
-              className={`px-4 py-2 text-xs uppercase tracking-wide border ${
+              className={`flex-shrink-0 px-3 py-1.5 sm:px-4 sm:py-2 text-[11px] sm:text-xs uppercase tracking-wide border whitespace-nowrap ${
                 region === 'all'
                   ? 'bg-brand border-brand text-white'
                   : 'border-white/15 text-neutral-400 hover:border-white/40 hover:text-white'
@@ -137,7 +134,7 @@ export default function Featured() {
               <button
                 key={r}
                 onClick={() => setRegion(r)}
-                className={`px-4 py-2 text-xs uppercase tracking-wide border ${
+                className={`flex-shrink-0 px-3 py-1.5 sm:px-4 sm:py-2 text-[11px] sm:text-xs uppercase tracking-wide border whitespace-nowrap ${
                   region === r
                     ? 'bg-brand border-brand text-white'
                     : 'border-white/15 text-neutral-400 hover:border-white/40 hover:text-white'
