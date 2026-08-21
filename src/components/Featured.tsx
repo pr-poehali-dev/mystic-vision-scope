@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useSiteData } from '@/hooks/useSiteData';
 import type { Concert } from '@/hooks/useSiteData';
 import Icon from '@/components/ui/icon';
@@ -12,12 +13,6 @@ const MONTH_NAMES: Record<string, string> = {
   'апреля': 'АПРЕЛЬ', 'мая': 'МАЙ', 'июня': 'ИЮНЬ',
   'июля': 'ИЮЛЬ', 'августа': 'АВГУСТ', 'сентября': 'СЕНТЯБРЬ',
   'октября': 'ОКТЯБРЬ', 'ноября': 'НОЯБРЬ', 'декабря': 'ДЕКАБРЬ'
-};
-
-const MONTH_NUM: Record<string, string> = {
-  'января': '01', 'февраля': '02', 'марта': '03', 'апреля': '04',
-  'мая': '05', 'июня': '06', 'июля': '07', 'августа': '08',
-  'сентября': '09', 'октября': '10', 'ноября': '11', 'декабря': '12'
 };
 
 function getMonth(date: string): string {
@@ -53,52 +48,85 @@ export default function Featured() {
   const { data } = useSiteData();
   const concerts = (data?.concerts || []).filter(c => !isPast(c.date));
   const groups = groupByMonth(concerts);
+  const total = concerts.length;
 
   return (
-    <div id="concerts" className="bg-black text-white min-h-screen px-6 py-20 lg:py-32">
-      <div className="max-w-5xl mx-auto">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-6">
+    <div id="concerts" className="relative bg-black text-white px-6 py-24 lg:py-36 overflow-hidden">
+      <div
+        className="pointer-events-none absolute -top-40 right-0 w-[600px] h-[600px] rounded-full opacity-20 blur-[120px]"
+        style={{ background: "radial-gradient(circle, #e00000 0%, transparent 70%)" }}
+      />
+
+      <div className="relative max-w-5xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-6"
+        >
           <div>
-            <p className="text-brand uppercase tracking-[0.4em] text-xs mb-3">{data?.settings?.concerts_month || '2026 Тур'}</p>
-            <h2 className="text-5xl lg:text-7xl font-bold tracking-tight">{data?.settings?.concerts_title || 'КОНЦЕРТЫ'}</h2>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="w-8 h-px bg-brand" />
+              <p className="text-brand uppercase tracking-[0.4em] text-xs">{data?.settings?.concerts_month || '2026 Тур'}</p>
+            </div>
+            <h2 className="text-6xl lg:text-8xl font-bold tracking-tight leading-none">
+              {data?.settings?.concerts_title || 'КОНЦЕРТЫ'}
+            </h2>
           </div>
-          <p className="text-neutral-400 max-w-xs leading-relaxed text-sm">
-            {data?.settings?.concerts_description || 'Живые выступления в лучших площадках страны. Почувствуй музыку вживую.'}
-          </p>
-        </div>
+          <div className="flex items-center gap-6">
+            <p className="text-neutral-400 max-w-xs leading-relaxed text-sm">
+              {data?.settings?.concerts_description || 'Живые выступления в лучших площадках страны. Почувствуй музыку вживую.'}
+            </p>
+            {total > 0 && (
+              <div className="flex-shrink-0 text-right">
+                <div className="text-4xl font-bold text-brand" style={{ fontFamily: "'DIN Condensed', 'Barlow Condensed', sans-serif" }}>{total}</div>
+                <div className="text-neutral-500 text-[10px] uppercase tracking-widest">концертов</div>
+              </div>
+            )}
+          </div>
+        </motion.div>
 
         {groups.length === 0 && (
-          <div className="border border-neutral-800 py-16 text-center">
+          <div className="border border-white/10 rounded-2xl py-16 text-center bg-white/[0.02]">
             <p className="text-brand uppercase tracking-[0.4em] text-xs mb-3">Скоро</p>
             <p className="text-neutral-400 text-sm">Новые даты концертов будут объявлены</p>
           </div>
         )}
 
-        <div className="space-y-12">
+        <div className="space-y-14">
           {groups.map(({ month, items }) => (
             <div key={month}>
-              <div className="flex items-center gap-4 mb-4">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5 }}
+                className="flex items-center gap-4 mb-4"
+              >
                 <span className="text-brand uppercase tracking-[0.3em] text-xs font-bold">{MONTH_NAMES[month] || month.toUpperCase()}</span>
-                <div className="flex-1 h-px bg-neutral-800" />
-              </div>
-              <div className="flex flex-col divide-y divide-neutral-800">
+                <div className="flex-1 h-px bg-gradient-to-r from-white/15 to-transparent" />
+              </motion.div>
+              <div className="flex flex-col divide-y divide-white/10">
                 {items.map((concert, i) => (
-                  <div
+                  <motion.div
                     key={concert.id ?? i}
-                    className="flex flex-col sm:flex-row sm:items-center justify-between py-6 gap-4 group"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-60px" }}
+                    transition={{ duration: 0.5, delay: Math.min(i * 0.05, 0.3) }}
+                    className="flex flex-col sm:flex-row sm:items-center justify-between py-6 gap-4 group rounded-xl px-3 -mx-3 transition-colors duration-300 hover:bg-white/[0.03]"
                   >
                     <div className="flex items-center gap-6 lg:gap-10">
-                      <div>
-                        <div className="flex items-stretch gap-4">
-                          <div className="w-28 flex-shrink-0">
-                            <div className="text-2xl font-bold leading-tight">{concert.date}</div>
-                            <div className="text-neutral-500 text-xs uppercase tracking-wide mt-1">{concert.day}{concert.time ? ` · ${concert.time}` : ''}</div>
-                          </div>
-                          <div className="w-px bg-neutral-700 flex-shrink-0" />
-                          <div>
-                            <div className="text-2xl font-bold leading-tight group-hover:text-brand transition-colors duration-300">{concert.city}</div>
-                            <div className="text-neutral-400 text-sm mt-1">{concert.venue}{concert.address ? <span className="text-neutral-600"> · {concert.address}</span> : ''}</div>
-                          </div>
+                      <div className="flex items-stretch gap-4">
+                        <div className="w-28 flex-shrink-0">
+                          <div className="text-2xl font-bold leading-tight">{concert.date}</div>
+                          <div className="text-neutral-500 text-xs uppercase tracking-wide mt-1">{concert.day}{concert.time ? ` · ${concert.time}` : ''}</div>
+                        </div>
+                        <div className="w-px bg-gradient-to-b from-transparent via-white/20 to-transparent flex-shrink-0" />
+                        <div>
+                          <div className="text-2xl font-bold leading-tight group-hover:text-brand transition-colors duration-300">{concert.city}</div>
+                          <div className="text-neutral-400 text-sm mt-1">{concert.venue}{concert.address ? <span className="text-neutral-600"> · {concert.address}</span> : ''}</div>
                         </div>
                       </div>
                     </div>
@@ -107,14 +135,14 @@ export default function Featured() {
                       {concert.phone && (
                         <a
                           href={`tel:${concert.phone}`}
-                          className="border border-neutral-700 text-neutral-400 px-3 py-2.5 hover:border-neutral-500 hover:text-white transition-all duration-300"
+                          className="border border-white/15 text-neutral-400 rounded-full p-2.5 hover:border-white/40 hover:text-white transition-all duration-300"
                           title={concert.phone}
                         >
                           <Icon name="Phone" size={14} />
                         </a>
                       )}
                       {concert.sold ? (
-                        <span className="text-neutral-600 uppercase text-xs tracking-widest border border-neutral-700 px-5 py-2.5">
+                        <span className="text-neutral-600 uppercase text-xs tracking-widest border border-white/10 rounded-full px-5 py-2.5">
                           Распродано
                         </span>
                       ) : concert.ticketUrl ? (
@@ -122,17 +150,17 @@ export default function Featured() {
                           href={concert.ticketUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="border border-brand text-brand px-6 py-2.5 uppercase text-xs tracking-widest hover:bg-brand hover:text-white transition-all duration-300"
+                          className="bg-brand text-white px-6 py-2.5 rounded-full uppercase text-xs tracking-widest hover:bg-white hover:text-black transition-all duration-300"
                         >
                           Купить билет
                         </a>
                       ) : (
-                        <span className="text-neutral-500 uppercase text-xs tracking-widest border border-neutral-700 px-6 py-2.5">
+                        <span className="text-neutral-500 uppercase text-xs tracking-widest border border-white/10 rounded-full px-6 py-2.5">
                           Скоро
                         </span>
                       )}
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
