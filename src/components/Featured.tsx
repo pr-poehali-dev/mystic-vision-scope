@@ -104,7 +104,6 @@ export default function Featured() {
 
   const concerts = region === 'all' ? upcoming : upcoming.filter(c => getRegion(c.city) === region);
   const groups = groupByMonth(concerts);
-  const total = concerts.length;
 
   return (
     <div id="concerts" className="relative bg-black text-white px-6 pt-32 pb-24 lg:pt-44 lg:pb-36 overflow-hidden">
@@ -114,24 +113,6 @@ export default function Featured() {
       />
 
       <div className="relative max-w-5xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="flex items-center justify-between mb-16 gap-6"
-        >
-          <div className="flex items-center gap-3">
-            <span className="w-8 h-px bg-brand" />
-            <p className="text-brand uppercase tracking-[0.4em] text-xs">{data?.settings?.concerts_month || '2026 Тур'}</p>
-          </div>
-          {total > 0 && (
-            <div className="flex-shrink-0 text-right">
-              <div className="text-4xl font-bold text-brand" style={{ fontFamily: "'DIN Condensed', 'Barlow Condensed', sans-serif" }}>{total}</div>
-              <div className="text-neutral-500 text-[10px] uppercase tracking-widest">концертов</div>
-            </div>
-          )}
-        </motion.div>
-
         {regions.length > 1 && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
