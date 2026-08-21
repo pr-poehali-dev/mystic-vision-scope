@@ -5,8 +5,6 @@ import Icon from "@/components/ui/icon";
 
 const NAV_LINKS = [
   { href: "#concerts", label: "Концерты" },
-  { href: "#music", label: "Музыка" },
-  { href: "/booking", label: "Заявка" },
 ];
 
 interface HeaderProps {
