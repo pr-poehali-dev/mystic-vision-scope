@@ -113,7 +113,9 @@ export default function Featured() {
   const { data, isLoading } = useSiteData();
   const [region, setRegion] = useState<string>('all');
 
-  const upcoming = (data?.concerts || []).filter(c => !isPast(c.date));
+  const upcoming = (data?.concerts || []).filter(
+    c => !isPast(c.date) && !c.city.toLowerCase().includes('благодарный')
+  );
 
   const regions = useMemo(() => {
     const set = new Set<string>();
