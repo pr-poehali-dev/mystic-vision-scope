@@ -46,7 +46,15 @@ export interface SiteData {
   settings: SiteSettings;
 }
 
+const STATIC_URL = 'https://cdn.poehali.dev/projects/bd77bfb9-eb01-4e5f-b885-f17ac1c02d19/bucket/site-data.json';
+
 async function fetchSiteData(): Promise<SiteData> {
+  try {
+    const res = await fetch(`${STATIC_URL}?t=${Math.floor(Date.now() / 60000)}`);
+    if (res.ok) return await res.json();
+  } catch {
+    // fallback below
+  }
   const res = await fetch(`${ADMIN_URL}?action=data`);
   return res.json();
 }
