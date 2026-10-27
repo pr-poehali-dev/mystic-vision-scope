@@ -190,14 +190,14 @@ export default function Featured() {
                     className="flex flex-col sm:flex-row sm:items-center sm:justify-between py-6 sm:py-8 gap-4 sm:gap-4 group px-3 -mx-3 hover:bg-white/[0.03]"
                   >
                     <div className="flex items-center gap-3 sm:gap-6 lg:gap-10 min-w-0">
-                      <div className="flex items-stretch gap-2 sm:gap-4 min-w-0">
-                        <div className="w-16 sm:w-28 flex-shrink-0">
-                          <div className="text-base sm:text-2xl font-bold leading-tight whitespace-nowrap">
+                      <div className="flex items-center gap-3 sm:gap-5 min-w-0">
+                        <div className="w-20 sm:w-40 flex-shrink-0">
+                          <div className="text-2xl sm:text-4xl font-bold leading-tight whitespace-nowrap">
                             {shortDate(concert.date)}
                           </div>
                           <div className="text-neutral-500 text-[10px] sm:text-xs uppercase tracking-wide mt-1">{concert.day}{(concert.time || '19:00') ? ` · ${concert.time || '19:00'}` : ''}</div>
                         </div>
-                        <div className="w-px bg-gradient-to-b from-transparent via-white/20 to-transparent flex-shrink-0" />
+                        <div className="self-stretch w-px bg-gradient-to-b from-transparent via-white/20 to-transparent flex-shrink-0" />
                         <div className="min-w-0">
                           <div className="text-2xl sm:text-4xl font-bold leading-tight group-hover:text-brand sm:truncate">{concert.city}</div>
                           <div className="text-neutral-400 text-sm mt-1">{concert.venue}{concert.address ? <span className="text-neutral-600"> · {concert.address}</span> : ''}</div>
