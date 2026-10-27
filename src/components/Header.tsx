@@ -20,18 +20,14 @@ export default function Header({ className }: HeaderProps) {
         scrolled ? "bg-black/60 backdrop-blur-xl border-b border-white/10" : "bg-transparent"
       } ${className ?? ""}`}
     >
-      <div className="flex justify-between items-center px-6 lg:px-10 py-5">
+      <div className="flex justify-center items-center px-6 lg:px-10 py-6 lg:py-8">
         <a
           href="/"
-          className="text-white text-sm font-bold uppercase"
-          style={{ fontFamily: "'DIN Condensed', 'Barlow Condensed', sans-serif", letterSpacing: "0.5em" }}
+          className="text-white text-2xl sm:text-4xl font-bold uppercase"
+          style={{ fontFamily: "'DIN Condensed', 'Barlow Condensed', sans-serif", letterSpacing: "0.5em", marginRight: "-0.5em" }}
         >
           BATRAI
         </a>
-
-        <p className="text-brand uppercase tracking-[0.3em] text-xs font-medium">
-          Тур 2026
-        </p>
       </div>
     </header>
   );
