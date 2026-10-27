@@ -1,0 +1,1 @@
+UPDATE t_p78741689_mystic_vision_scope.concerts SET time_text = '19:00', updated_at = now() WHERE city LIKE '%Москва%' OR city LIKE '%Санкт-Петербург%';
