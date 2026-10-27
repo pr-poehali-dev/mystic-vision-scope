@@ -1,26 +1,13 @@
-import { useEffect, useState } from "react";
-
 interface HeaderProps {
   className?: string;
 }
 
 export default function Header({ className }: HeaderProps) {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 ${
-        scrolled ? "bg-black/60 backdrop-blur-xl border-b border-white/10" : "bg-transparent"
-      } ${className ?? ""}`}
+      className={`relative z-50 flex-shrink-0 bg-transparent ${className ?? ""}`}
     >
-      <div className="flex justify-center items-center px-6 lg:px-10 pt-[49px] sm:pt-[60px]">
+      <div className="flex justify-center items-center px-6 lg:px-10 pt-10 pb-5 sm:pt-14 sm:pb-8">
         <a
           href="/"
           className="text-white text-5xl sm:text-7xl leading-none font-bold uppercase"
