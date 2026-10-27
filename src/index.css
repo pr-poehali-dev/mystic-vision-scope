@@ -104,8 +104,15 @@
     @apply border-border;
   }
 
+  html {
+    background-color: #000;
+    color-scheme: dark;
+  }
+
   body {
     @apply bg-background text-foreground;
+    background-color: #000;
+    overscroll-behavior-y: none;
     font-family:
       "Montserrat",
       system-ui,
