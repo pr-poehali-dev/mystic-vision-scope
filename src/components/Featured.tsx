@@ -3,6 +3,8 @@ import { useSiteData } from '@/hooks/useSiteData';
 import type { Concert } from '@/hooks/useSiteData';
 import Icon from '@/components/ui/icon';
 
+const SHOW_REGION_FILTER = false;
+
 const MONTH_ORDER = [
   'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
   'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
@@ -134,7 +136,7 @@ export default function Featured() {
       />
 
       <div className="relative w-full max-w-5xl mx-auto">
-        {regions.length > 1 && (
+        {SHOW_REGION_FILTER && regions.length > 1 && (
           <div className="flex items-center gap-1 sm:gap-2 flex-nowrap mb-8 sm:mb-12">
             <button
               onClick={() => setRegion('all')}
