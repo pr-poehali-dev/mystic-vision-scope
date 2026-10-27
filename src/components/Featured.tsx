@@ -243,10 +243,15 @@ export default function Featured() {
         </div>
         <a
           href="tel:+79261438570"
-          className="mt-10 flex items-center justify-center gap-2 border border-white/15 text-neutral-400 py-4 uppercase text-xs tracking-widest hover:border-white/40 hover:text-white"
+          className="mt-10 flex flex-col items-center justify-center gap-1.5 border border-white/20 py-6 text-center hover:border-brand hover:bg-white/[0.03] group"
         >
-          <Icon name="Phone" size={16} />
-          Связаться с организатором (Никита)
+          <span className="text-neutral-500 uppercase text-[10px] sm:text-xs tracking-[0.3em]">
+            Связаться с организатором
+          </span>
+          <span className="flex items-center gap-3 text-white text-xl sm:text-2xl font-bold group-hover:text-brand">
+            <Icon name="Phone" size={20} />
+            Никита
+          </span>
         </a>
       </div>
     </div>
