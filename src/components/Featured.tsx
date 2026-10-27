@@ -129,7 +129,7 @@ export default function Featured() {
   const groups = groupByMonth(concerts);
 
   return (
-    <div id="concerts" className="relative bg-black text-white px-6 pt-0 pb-8 sm:pb-10 flex-1 min-h-0 flex flex-col justify-start overflow-hidden">
+    <div id="concerts" className="relative bg-black text-white px-6 pt-0 pb-0 flex flex-col justify-start overflow-hidden">
       <div
         className="pointer-events-none absolute -top-40 right-0 w-[600px] h-[600px] rounded-full opacity-20 blur-[120px]"
         style={{ background: "radial-gradient(circle, #e00000 0%, transparent 70%)" }}

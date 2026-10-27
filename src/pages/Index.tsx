@@ -3,7 +3,7 @@ import Featured from "@/components/Featured";
 
 const Index = () => {
   return (
-    <main className="h-[100dvh] overflow-hidden flex flex-col bg-black">
+    <main className="h-[100dvh] overflow-hidden flex flex-col justify-center bg-black">
       <Header />
       <Featured />
     </main>
