@@ -239,14 +239,6 @@ export default function Featured() {
             </div>
           ))}
         </div>
-
-        <a
-          href="tel:+79281819424"
-          className="sm:hidden mt-8 flex items-center justify-center gap-2 border border-white/15 text-neutral-400 py-4 uppercase text-xs tracking-widest hover:border-white/40 hover:text-white"
-        >
-          <Icon name="Phone" size={16} />
-          Связаться с организатором (Сергей)
-        </a>
       </div>
     </div>
   );
