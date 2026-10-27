@@ -127,13 +127,13 @@ export default function Featured() {
   const groups = groupByMonth(concerts);
 
   return (
-    <div id="concerts" className="relative bg-black text-white px-6 pt-16 pb-24 lg:pt-28 lg:pb-36 overflow-hidden">
+    <div id="concerts" className="relative bg-black text-white px-6 py-16 lg:py-28 min-h-screen flex flex-col justify-center overflow-hidden">
       <div
         className="pointer-events-none absolute -top-40 right-0 w-[600px] h-[600px] rounded-full opacity-20 blur-[120px]"
         style={{ background: "radial-gradient(circle, #e00000 0%, transparent 70%)" }}
       />
 
-      <div className="relative max-w-5xl mx-auto">
+      <div className="relative w-full max-w-5xl mx-auto">
         {regions.length > 1 && (
           <div className="flex items-center gap-1 sm:gap-2 flex-nowrap mb-8 sm:mb-12">
             <button
@@ -174,7 +174,7 @@ export default function Featured() {
           </div>
         )}
 
-        <div className="space-y-14">
+        <div className="space-y-10 sm:space-y-14">
           {groups.map(({ month, items }) => (
             <div key={month}>
               <div className="flex items-center gap-4 mb-4">
@@ -185,25 +185,25 @@ export default function Featured() {
                 {items.map((concert, i) => (
                   <div
                     key={concert.id ?? i}
-                    className="flex items-center justify-between py-3 sm:py-6 gap-2 sm:gap-4 group px-3 -mx-3 hover:bg-white/[0.03]"
+                    className="flex flex-col sm:flex-row sm:items-center sm:justify-between py-6 sm:py-8 gap-4 sm:gap-4 group px-3 -mx-3 hover:bg-white/[0.03]"
                   >
                     <div className="flex items-center gap-3 sm:gap-6 lg:gap-10 min-w-0">
                       <div className="flex items-stretch gap-2 sm:gap-4 min-w-0">
-                        <div className="w-14 sm:w-28 flex-shrink-0">
-                          <div className="text-sm sm:text-2xl font-bold leading-tight whitespace-nowrap">
+                        <div className="w-16 sm:w-28 flex-shrink-0">
+                          <div className="text-base sm:text-2xl font-bold leading-tight whitespace-nowrap">
                             {shortDate(concert.date)}
                           </div>
                           <div className="hidden sm:block text-neutral-500 text-xs uppercase tracking-wide mt-1">{concert.day}{concert.time ? ` · ${concert.time}` : ''}</div>
                         </div>
                         <div className="w-px bg-gradient-to-b from-transparent via-white/20 to-transparent flex-shrink-0" />
                         <div className="min-w-0">
-                          <div className="text-sm sm:text-2xl font-bold leading-tight group-hover:text-brand truncate">{concert.city}</div>
+                          <div className="text-2xl sm:text-4xl font-bold leading-tight group-hover:text-brand sm:truncate">{concert.city}</div>
                           <div className="hidden sm:block text-neutral-400 text-sm mt-1">{concert.venue}{concert.address ? <span className="text-neutral-600"> · {concert.address}</span> : ''}</div>
                         </div>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+                    <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0 w-full sm:w-auto">
                       {concert.phone && (
                         <a
                           href={`tel:${concert.phone}`}
@@ -223,7 +223,7 @@ export default function Featured() {
                           href={concert.ticketUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="bg-brand text-white px-2.5 py-1.5 sm:px-6 sm:py-2.5 uppercase text-[10px] sm:text-xs tracking-widest hover:bg-white hover:text-black whitespace-nowrap"
+                          className="bg-brand text-white w-full sm:w-auto text-center px-4 py-3 sm:px-6 sm:py-2.5 uppercase text-xs tracking-widest hover:bg-white hover:text-black whitespace-nowrap"
                         >
                           Купить билет
                         </a>
