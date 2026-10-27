@@ -193,12 +193,12 @@ export default function Featured() {
                           <div className="text-base sm:text-2xl font-bold leading-tight whitespace-nowrap">
                             {shortDate(concert.date)}
                           </div>
-                          <div className="hidden sm:block text-neutral-500 text-xs uppercase tracking-wide mt-1">{concert.day}{concert.time ? ` · ${concert.time}` : ''}</div>
+                          <div className="text-neutral-500 text-[10px] sm:text-xs uppercase tracking-wide mt-1">{concert.day}{concert.time ? ` · ${concert.time}` : ''}</div>
                         </div>
                         <div className="w-px bg-gradient-to-b from-transparent via-white/20 to-transparent flex-shrink-0" />
                         <div className="min-w-0">
                           <div className="text-2xl sm:text-4xl font-bold leading-tight group-hover:text-brand sm:truncate">{concert.city}</div>
-                          <div className="hidden sm:block text-neutral-400 text-sm mt-1">{concert.venue}{concert.address ? <span className="text-neutral-600"> · {concert.address}</span> : ''}</div>
+                          <div className="text-neutral-400 text-sm mt-1">{concert.venue}{concert.address ? <span className="text-neutral-600"> · {concert.address}</span> : ''}</div>
                         </div>
                       </div>
                     </div>
