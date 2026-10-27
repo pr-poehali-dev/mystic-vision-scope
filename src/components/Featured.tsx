@@ -195,7 +195,7 @@ export default function Featured() {
                           <div className="text-base sm:text-2xl font-bold leading-tight whitespace-nowrap">
                             {shortDate(concert.date)}
                           </div>
-                          <div className="text-neutral-500 text-[10px] sm:text-xs uppercase tracking-wide mt-1">{concert.day}{concert.time ? ` · ${concert.time}` : ''}</div>
+                          <div className="text-neutral-500 text-[10px] sm:text-xs uppercase tracking-wide mt-1">{concert.day}{(concert.time || '19:00') ? ` · ${concert.time || '19:00'}` : ''}</div>
                         </div>
                         <div className="w-px bg-gradient-to-b from-transparent via-white/20 to-transparent flex-shrink-0" />
                         <div className="min-w-0">
