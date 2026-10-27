@@ -20,10 +20,10 @@ export default function Header({ className }: HeaderProps) {
         scrolled ? "bg-black/60 backdrop-blur-xl border-b border-white/10" : "bg-transparent"
       } ${className ?? ""}`}
     >
-      <div className="flex justify-center items-center px-6 lg:px-10 pt-12 lg:pt-16">
+      <div className="flex justify-center items-center px-6 lg:px-10 pt-[49px] sm:pt-[60px]">
         <a
           href="/"
-          className="text-white text-4xl sm:text-6xl font-bold uppercase"
+          className="text-white text-5xl sm:text-7xl leading-none font-bold uppercase"
           style={{ fontFamily: "'DIN Condensed', 'Barlow Condensed', sans-serif", letterSpacing: "0.5em", marginRight: "-0.5em" }}
         >
           BATRAI
