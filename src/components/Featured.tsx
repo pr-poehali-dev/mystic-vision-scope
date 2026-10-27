@@ -129,7 +129,7 @@ export default function Featured() {
   const groups = groupByMonth(concerts);
 
   return (
-    <div id="concerts" className="relative bg-black text-white px-6 pt-[136px] pb-16 lg:pt-[188px] lg:pb-28 min-h-screen flex flex-col justify-start overflow-hidden">
+    <div id="concerts" className="relative bg-black text-white px-6 pt-[120px] pb-8 lg:pt-[160px] lg:pb-10 h-[100dvh] flex flex-col justify-center overflow-hidden">
       <div
         className="pointer-events-none absolute -top-40 right-0 w-[600px] h-[600px] rounded-full opacity-20 blur-[120px]"
         style={{ background: "radial-gradient(circle, #e00000 0%, transparent 70%)" }}
@@ -176,7 +176,7 @@ export default function Featured() {
           </div>
         )}
 
-        <div className="space-y-10 sm:space-y-14">
+        <div className="space-y-6 sm:space-y-10">
           {groups.map(({ month, items }) => (
             <div key={month}>
               <div className="flex items-center gap-4 mb-4">
@@ -187,7 +187,7 @@ export default function Featured() {
                 {items.map((concert, i) => (
                   <div
                     key={concert.id ?? i}
-                    className="flex flex-col sm:flex-row sm:items-center sm:justify-between py-6 sm:py-8 gap-4 sm:gap-4 group px-3 -mx-3 hover:bg-white/[0.03]"
+                    className="flex flex-col sm:flex-row sm:items-center sm:justify-between py-4 sm:py-6 gap-3 sm:gap-4 group px-3 -mx-3 hover:bg-white/[0.03]"
                   >
                     <div className="flex items-center gap-3 sm:gap-6 lg:gap-10 min-w-0">
                       <div className="flex items-center gap-3 sm:gap-5 min-w-0">
@@ -243,7 +243,7 @@ export default function Featured() {
         </div>
         <a
           href="tel:+79261438570"
-          className="mt-10 flex flex-col items-center justify-center gap-1.5 border border-white/20 py-6 text-center hover:border-brand hover:bg-white/[0.03] group"
+          className="mt-6 flex flex-col items-center justify-center gap-1.5 border border-white/20 py-5 text-center hover:border-brand hover:bg-white/[0.03] group"
         >
           <span className="text-neutral-500 uppercase text-[10px] sm:text-xs tracking-[0.3em]">
             Связаться с организатором

@@ -3,7 +3,7 @@ import Featured from "@/components/Featured";
 
 const Index = () => {
   return (
-    <main className="min-h-screen">
+    <main className="h-[100dvh] overflow-hidden">
       <Header />
       <Featured />
     </main>
