@@ -20,7 +20,7 @@ export default function Header({ className }: HeaderProps) {
         scrolled ? "bg-black/60 backdrop-blur-xl border-b border-white/10" : "bg-transparent"
       } ${className ?? ""}`}
     >
-      <div className="flex justify-center items-center px-6 lg:px-10 pt-12 pb-6 lg:pt-16 lg:pb-8">
+      <div className="flex justify-center items-center px-6 lg:px-10 pt-12 lg:pt-16">
         <a
           href="/"
           className="text-white text-4xl sm:text-6xl font-bold uppercase"
